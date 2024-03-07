@@ -36,3 +36,7 @@ where subject = 'CSC' and course_number = '112';
  * 2. Divide by total credit hours needed by major using Major_Courses and Course table 
  * (need to take into account electives and optional courses)
  */
+
+
+
+
