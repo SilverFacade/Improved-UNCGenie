@@ -1,12 +1,33 @@
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request
+from functools import wraps
+import jwt
+import datetime
 import psycopg2
 import json
 
 app = Flask(__name__)
-app.secret_key = "1095b7236v4c5-08Aert915v1dy345wdSGFD"
+app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
 
-# login
-@app.route("/api/login", methods=['POST', 'GET'])
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args['token']
+
+        if not token:
+            return jsonify({'message' : 'No token given'}), 401
+
+        try:      
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        except:
+            return jsonify({'message' : 'Token is invalid'}), 401
+
+        #pass current PIN?
+        return f(*args, **kwargs)
+
+    return decorated
+
+# TODO: add tokens to database
+@app.route("/api/login", methods=['POST'])
 def login():
     pin = request.json['username']
     password = request.json['password']
@@ -29,8 +50,6 @@ def login():
         rv = cur.fetchone()
         rv = int(rv[0])
 
-        session["user_pin"] = pin
-
     finally:
         if cur is not None:
             cur.close()
@@ -39,29 +58,25 @@ def login():
 
     # if the pin and id don't match a record in Person table
     if rv < 1:   
-        return {'message':'Wrong PIN or password', 'status' : '401'}, 401
+        return jsonify({'message':'Wrong PIN or password', 'status' : '401'}), 401
 
-    return {'message':'Successfully Logged in', 'status' : '200'}, 200
+    token = jwt.encode({'pin' : pin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(hours=10)}, app.config['SECRET_KEY'])
+
+    return jsonify({'token' : token, 'status' : 200}), 200
 
 
 
 
-# logout
+# TODO: logout (make blocklist for tokens?)
 @app.route("/api/logout", methods=['GET'])
 def logout():
-    session.pop("user_pin", None)
-    return 
-
-
+    return
 
 
 # just to test connection between frontend and backend
-@app.route("/api/schedule")
+@app.route("/api/schedule", methods=['GET'])
+@token_required
 def schedule():
-    #verify session for user, redirect to login page if invalid.
-    if "user_pin" in session:
-        pin = session["user_pin"]
-
     conn = psycopg2.connect(host = 'localhost',
                         dbname = 'webregistrationapp',
                         user = 'postgres',
