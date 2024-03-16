@@ -105,7 +105,7 @@ def schedule(pin):
                     WHERE student_pin = %s and schedule_name = %s '''
 
         # execute query, adding pin and schedule where %s is in query (need to be in order) to prevent sql injection
-        # is only 1 %s you will still need a comma after it so (pin,)
+        # if only 1 %s you will still need a comma after it so (pin,)
         cur.execute(script, (pin, schedule))
            
         # Storing data from query in rv. cur.fetchall fetches all the records returned from query,
