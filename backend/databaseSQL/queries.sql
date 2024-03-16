@@ -40,3 +40,10 @@ where subject = 'CSC' and course_number = '112';
 
 
 
+SELECT "Registration"."Schedule".subject, "Registration"."Schedule".course_number, 
+"Registration"."Schedule".section_number, "Registration"."Section".days
+FROM "Registration"."Schedule" inner join "Registration"."Section" on 
+"Registration"."Section".course_number = "Registration"."Schedule".course_number and 
+"Registration"."Section".section_number = "Registration"."Schedule".section_number and 
+"Registration"."Section".subject = "Registration"."Schedule".subject
+WHERE student_pin = '98513241' and schedule_name = 'Rosie Schedule';
