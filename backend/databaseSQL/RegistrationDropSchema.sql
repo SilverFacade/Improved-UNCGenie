@@ -5,7 +5,7 @@
 
 drop table "Registration"."Student_Courses_Completed" ;
 
-drop table "Registration"."Student_Sections_Enrolled" ;
+drop table "Registration"."Student_Sections_Registered" ;
 
 drop table "Registration"."Minor_Courses" ;
 

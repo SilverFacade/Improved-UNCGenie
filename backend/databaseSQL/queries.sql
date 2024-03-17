@@ -29,21 +29,16 @@ select req_course_subject, req_course_number
 from "Registration"."Course_Requisite"
 where subject = 'CSC' and course_number = '112';
 
-/*
- * degree progress: 120 credit hours needed for degree, certain courses need completed
- * 1. Get total credit hours completed by student with Student_Courses_Completed
- * and Course table
- * 2. Divide by total credit hours needed by major using Major_Courses and Course table 
- * (need to take into account electives and optional courses)
- */
 
 
 
 
-SELECT "Registration"."Schedule".subject, "Registration"."Schedule".course_number, 
-"Registration"."Schedule".section_number, "Registration"."Section".days
-FROM "Registration"."Schedule" inner join "Registration"."Section" on 
-"Registration"."Section".course_number = "Registration"."Schedule".course_number and 
-"Registration"."Section".section_number = "Registration"."Schedule".section_number and 
-"Registration"."Section".subject = "Registration"."Schedule".subject
-WHERE student_pin = '98513241' and schedule_name = 'Rosie Schedule';
+
+
+
+
+
+
+SELECT subject, course_number, section_number, active, capacity, days, time, waitlist_active, waitlist_capacity
+FROM "Registration"."Section"
+WHERE course_number = '98513241' and section_number = 'Rosie Schedule';

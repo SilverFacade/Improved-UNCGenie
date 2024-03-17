@@ -1,13 +1,35 @@
 @import url('../assets/css/global.scss');
 
 
-.register {
+.introduction{
     position: absolute;
-    top: 8%;
-    left: 2%;
+    width: 90vw;
+    margin-left: 5vw;
+    top: 10%;
+    background: rgb(51, 51, 143);
+    border-radius: 5vh;
+
+    h1{
+        text-align: center;
+    }
+
+    p{
+        text-align: center;
+    }
+
+}
+
+.register{
+    position: absolute;
+    margin-left: 2vw;
+    width: 96vw;
+    height: 85vh;
+    margin-top: 30vh;
+    background: rgb(46, 45, 45); 
+    border-radius: 5vh;
 
     th{
-        background:rgb(54, 54, 117); 
+        background:rgb(50, 50, 124); 
         text-align:center; 
         border:1px solid black;
     }
@@ -17,6 +39,16 @@
         background: var(--navyaccent2);
         text-align:center;
         border:1px solid black;
+    }
+
+    .button-cell-header{
+        width: 12vw;  
+    }
+
+    .buttons-cell{
+        width: 12vw; 
+        border: none;
+        background: none; 
     }
 
     .register-or-schedule-button{
@@ -33,13 +65,15 @@
     
     .registered-classes-table{
         position: relative;
-        border-collapse: seperate;
-        left: 3%;
-        right: 10%;
-        width: 80vw;
+        border-collapse: separate;
+        table-layout: fixed;      
+        empty-cells: hide;
+        margin-left: 1.2vw;
+        margin-right: 1vw;
+        width: 90.7vw;
         height: 5vh;
         margin-top: 3vh;
-        margin-bottom: 5vh;
+        margin-bottom: 10vh;
         border-spacing:1px 1.5vh;
 
         .registered-classes-table-column-headers{
@@ -48,27 +82,24 @@
 
         .registered-classes-table-row{
             height: 5vh;
-
-            .drop-button{
-                position: absolute;
-                float: left;
-                margin-left: 2vw;
-                margin-top: 0.75vh;
-                width: 10vw;
-                background: var(--navyaccent2);
-                border: 1px solid var(--navy);
-                border-radius: 1vh;
-                padding: 0.8vh;
-                color: var(--prettypink);
-            }
         }     
+
+        .registered-courses-drop-button{
+            margin-left: 2.5vw;
+            width: 8vw;
+            background: var(--navyaccent2);
+            border: 1px solid var(--navy);
+            border-radius: 1vh;
+            padding: 0.8vh;
+            color: var(--prettypink);
+        }
     }
      
 
     .look-for-class{    
         position: relative;
         display: flex;
-        margin-left: 20vw;
+        margin-left: 23vw;
 
 
         .subject-dropdown{
@@ -115,9 +146,11 @@
     .sections-table {
         position: relative;
         border-collapse: separate;
-        left: 3%;
-        right: 10%;
-        width: 80vw;
+        empty-cells: hide;
+        table-layout: fixed;
+        margin-left: 1.2vw;
+        margin-right: 1vw;
+        width: 90.7vw;
         height: 5vh;
         border-spacing:1px 1.5vh;
 
@@ -127,34 +160,32 @@
 
         .sections-table-row {
             height: 5vh;     
+        }
 
-            .sections-table-row-buttons{
-                position: absolute;
-                display: flex;
-
-                .register-button{
-                    margin-left: 2vw;
-                    margin-top: 1vh;
-                    background: var(--navyaccent2);
-                    border: 1px solid var(--navy);
-                    border-radius: 1vh;
-                    padding: 0.6vh;
-                    color: var(--prettypink);
-                }
-                
-                .add-to-schedule-button{
-                    margin-left: 1vw; 
-                    margin-top: 1vh;
-                    background: var(--navyaccent2);
-                    border: 1px solid var(--navy);
-                    border-radius: 1vh;
-                    padding: 0.6vh;
-                    color: var(--prettypink);
-                }
+        .sections-table-row-buttons{
+            display: flex;
+    
+            .register-button{
+                margin-left: 1.2vw;
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
+            }
+            
+            .add-to-schedule-button{
+                margin-left: 0.7vw;
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
             }
         }
     }  
 }
+
 
 
 

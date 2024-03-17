@@ -76,11 +76,13 @@ CREATE TABLE "Registration"."Section" (
   "course_number" char(3),
   "section_number" char(2),
   "crn" char(5) NOT NULL,
+  "active" int NOT NULL,
   "capacity" int NOT NULL,
   "start_date" date,
   "location" varchar(50),
   "campus" varchar(50),
   "days" varchar(10),
+  "time" varchar(20),
   "waitlist_active" int,
   "waitlist_capacity" int,
   "xl_active" int,
@@ -144,7 +146,7 @@ CREATE TABLE "Registration"."Minor_Courses" (
 /*
  * Table that lists the sections that a student is enrolled in
  */
-CREATE TABLE "Registration"."Student_Sections_Enrolled" (
+CREATE TABLE "Registration"."Student_Sections_Registered" (
   "student_pin" char(8),
   "subject" char(3),
   "course_number" char(3),
@@ -191,9 +193,9 @@ ALTER TABLE "Registration"."Minor_Courses" ADD FOREIGN KEY ("minor_name") REFERE
 
 ALTER TABLE "Registration"."Minor_Courses" ADD FOREIGN KEY ("subject", "course_number") REFERENCES "Registration"."Course" ("subject", "course_number");
 
-ALTER TABLE "Registration"."Student_Sections_Enrolled" ADD FOREIGN KEY ("student_pin") REFERENCES "Registration"."Student" ("pin");
+ALTER TABLE "Registration"."Student_Sections_Registered" ADD FOREIGN KEY ("student_pin") REFERENCES "Registration"."Student" ("pin");
 
-ALTER TABLE "Registration"."Student_Sections_Enrolled" ADD FOREIGN KEY ("subject", "course_number", "section_number") REFERENCES "Registration"."Section" ("subject", "course_number", "section_number");
+ALTER TABLE "Registration"."Student_Sections_Registered" ADD FOREIGN KEY ("subject", "course_number", "section_number") REFERENCES "Registration"."Section" ("subject", "course_number", "section_number");
 
 ALTER TABLE "Registration"."Student_Courses_Completed" ADD FOREIGN KEY ("student_pin") REFERENCES "Registration"."Student" ("pin");
 

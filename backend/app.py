@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
 
 # TODO: updates methods allowed for each endpoint
+# TODO: add @token_required (and pin) to endpoints
 
 # Wrapped and Wrapper function to handle the token that should be received from the client
 # to validate their identity
@@ -129,6 +130,43 @@ def schedule(pin):
 
 
 
+# TODO: The sections endpoint returns the sections the client wants
+@app.route("/api/sections", methods=['GET', 'POST'])
+def sections():
+    subject = request.json['subject']
+    courseNumber = request.json['courseNumber']
+
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT subject, course_number, section_number, active, capacity, days, 
+                    time, waitlist_active, waitlist_capacity
+                    FROM "Registration"."Section"
+                    WHERE subject = %s and course_number = %s '''
+      
+        cur.execute(script, (subject, courseNumber))
+           
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+
+    
+    return jsonify(rv), 200
+
+
+
 # TODO: The student endpoint returns information about the student in the person table. (maybe from
 # Student table and Student_Major and Student_Minor too)
 @app.route("/api/student", methods=['GET'])
@@ -147,7 +185,7 @@ def graduation_progress(pin):
 
 
 # TODO: The sections_registered endpoint returns the sections a student is registered for from
-# the Student_Sections_Enrolled table (may rename table to Student_Sections_Registered)
+# the Student_Sections_Registered table 
 @app.route("/api/sections_registered", methods=['GET'])
 @token_required
 def sections_registered(pin):
@@ -156,7 +194,7 @@ def sections_registered(pin):
 
 
 # TODO: The register endpoint registers a student for a section (see if section is full, if not
-# move to Student_Sections_Enrolled table, check prereqs, etc)
+# move to Student_Sections_Registered table, check prereqs, etc)
 @app.route("/api/register", methods=['GET', 'POST'])
 @token_required
 def register(pin):
@@ -184,14 +222,6 @@ def add_to_Schedule(pin):
 @app.route("/api/register_Schedule", methods=['GET', 'POST'])
 @token_required
 def register_Schedule(pin):
-    return 
-
-
-
-# TODO: The sections endpoint returns the sections the client wants
-@app.route("/api/sections", methods=['GET'])
-@token_required
-def sections(pin):
     return 
 
 

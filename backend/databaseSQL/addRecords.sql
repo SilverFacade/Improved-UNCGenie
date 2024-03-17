@@ -47,19 +47,19 @@ values
 /*
  * Inserts records into Section Table
  */
-insert into "Registration"."Section" (subject, course_number, section_number, crn, 
+insert into "Registration"."Section" (subject, course_number, section_number, crn, active,
 									capacity, start_date, location, campus, days, 
-									waitlist_active, waitlist_capacity, xl_active, 
+									time, waitlist_active, waitlist_capacity, xl_active, 
 									xl_capacity, attribute, instructor_pin)
 values 
-	('MAT', '111', '02', '13412', 30, '2024-08-23', 'Room1', 'Greensboro Campus', 'MWF', 0,
-	5, 0, 5, null, '93428713'),
-	('MAT', '113', '01', '41234', 30, '2024-08-23', 'Room3', 'Greensboro Campus', 'TTH', 0,
-	5, 0, 5, null, '93428713'),
-	('CSC', '111', '01', '67312', 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'MWF', 0,
-	5, 0, 5, null, '14269834'),
-	('CSC', '112', '02', '14729', 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'TTH', 0,
-	5, 0, 5, null, '14269834');
+	('MAT', '111', '02', '13412', 12, 30, '2024-08-23', 'Room1', 'Greensboro Campus', 'MWF', '8:00-9:15am',
+	0, 5, 0, 5, null, '93428713'),
+	('MAT', '113', '01', '41234', 12, 30, '2024-08-23', 'Room3', 'Greensboro Campus', 'TTH', '12:00-1:15pm',
+	0, 5, 0, 5, null, '93428713'),
+	('CSC', '111', '01', '67312', 12, 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'MWF', '10:00-10:50am',
+	0, 5, 0, 5, null, '14269834'),
+	('CSC', '112', '02', '14729', 12, 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'TTH', '2:00-3:15pm',
+	0, 5, 0, 5, null, '14269834');
 
 /*
  * Inserts into Course_Requisite Table
@@ -161,7 +161,7 @@ values
 /*
  * Inserts records into Student_Sections_Enrolled Table
  */
-insert into "Registration"."Student_Sections_Enrolled" (student_pin, subject, course_number, section_number)
+insert into "Registration"."Student_Sections_Registered" (student_pin, subject, course_number, section_number)
 values 
 	('98513241', 'CSC', '111', '01'),
 	('98513241', 'MAT', '113', '01'),
