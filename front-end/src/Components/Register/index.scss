@@ -1,0 +1,164 @@
+@import url('../assets/css/global.scss');
+
+
+.register {
+    position: absolute;
+    top: 8%;
+    left: 2%;
+
+    th{
+        background:rgb(54, 54, 117); 
+        text-align:center; 
+        border:1px solid black;
+    }
+
+    td{
+        border-radius: 1vh;
+        background: var(--navyaccent2);
+        text-align:center;
+        border:1px solid black;
+    }
+
+    .register-or-schedule-button{
+        margin-top: 3vh;
+        display: block;
+        margin: 0 auto;  
+        background: var(--navyaccent2);
+        border: 1px solid var(--navy);
+        border-radius: 1vh;
+        padding: 0.6vh;
+        color: var(--prettypink);
+    }
+  
+    
+    .registered-classes-table{
+        position: relative;
+        border-collapse: seperate;
+        left: 3%;
+        right: 10%;
+        width: 80vw;
+        height: 5vh;
+        margin-top: 3vh;
+        margin-bottom: 5vh;
+        border-spacing:1px 1.5vh;
+
+        .registered-classes-table-column-headers{
+            height: 3vh;
+        }
+
+        .registered-classes-table-row{
+            height: 5vh;
+
+            .drop-button{
+                position: absolute;
+                float: left;
+                margin-left: 2vw;
+                margin-top: 0.75vh;
+                width: 10vw;
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.8vh;
+                color: var(--prettypink);
+            }
+        }     
+    }
+     
+
+    .look-for-class{    
+        position: relative;
+        display: flex;
+        margin-left: 20vw;
+
+
+        .subject-dropdown{
+            position: relative;  
+            display: flex;
+            margin-top: 2vh;
+            margin-bottom: 3vh;
+            margin-left: 1vw;
+            margin-right: 5vw;  
+            background: var(--navyaccent2);
+            border: 1px solid var(--navy);
+            border-radius: 1vh;
+            padding: 0.6vh;
+            color: var(--prettypink);
+        }
+        
+        .course-number-dropdown{
+            position: relative;
+            display: flex;   
+            margin-left: 1vw;
+            margin-top: 2vh;
+            margin-bottom: 3vh;  
+            background: var(--navyaccent2);
+            border: 1px solid var(--navy);
+            border-radius: 1vh;
+            padding: 0.6vh;
+            color: var(--prettypink);
+        }
+        
+        .search-button{
+            position: relative;
+            margin-left: 8vw;
+            margin-top: 2vh;
+            margin-bottom: 2.75vh; 
+            background: var(--navyaccent2);
+            border: 1px solid var(--navy);
+            border-radius: 1vh;
+            padding: 0.6vh;
+            color: var(--prettypink);
+        }    
+    }
+    
+       
+    .sections-table {
+        position: relative;
+        border-collapse: separate;
+        left: 3%;
+        right: 10%;
+        width: 80vw;
+        height: 5vh;
+        border-spacing:1px 1.5vh;
+
+        .sections-table-column-headers{   
+            height: 3vh; 
+        }
+
+        .sections-table-row {
+            height: 5vh;     
+
+            .sections-table-row-buttons{
+                position: absolute;
+                display: flex;
+
+                .register-button{
+                    margin-left: 2vw;
+                    margin-top: 1vh;
+                    background: var(--navyaccent2);
+                    border: 1px solid var(--navy);
+                    border-radius: 1vh;
+                    padding: 0.6vh;
+                    color: var(--prettypink);
+                }
+                
+                .add-to-schedule-button{
+                    margin-left: 1vw; 
+                    margin-top: 1vh;
+                    background: var(--navyaccent2);
+                    border: 1px solid var(--navy);
+                    border-radius: 1vh;
+                    padding: 0.6vh;
+                    color: var(--prettypink);
+                }
+            }
+        }
+    }  
+}
+
+
+
+
+
+
+

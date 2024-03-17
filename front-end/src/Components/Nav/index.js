@@ -15,6 +15,7 @@ const Nav = () => {
         localStorage.clear();
         window.location.href=window.location.path;
     }
+
     const element = localStorage.getItem('token') ?
         (
             <a onClick={()=>logout()}>
@@ -27,45 +28,46 @@ const Nav = () => {
                 <FontAwesomeIcon icon={faArrowRightToBracket}/>
             </a>
         );
+
+    
     return (
         <>
             <nav className={'nav-bar'}>
                 <span className={'logos'}>
                     <Link className='logo' to='/'>
                          <img src={''} alt="logo"/>
-                         <img className="sub-logo" src={''} alt="logo"/>
+                         {/* <img className="sub-logo" src={''} alt="logo"/> */}
                     </Link>
                 </span>
-                    <span className={'first-three'}>
-                        <NavLink exact="true" activeclassname="active" to="/home">
-                            <FontAwesomeIcon icon={faHome} />
-                        </NavLink>
-                        <NavLink exact="true" activeclassname="active" className="about-link" to="/about">
-                            <FontAwesomeIcon icon={faUser} />
-                        </NavLink>
-                        <NavLink exact="true" activeclassname="active" className="contact-link" to="/contact">
-                            <FontAwesomeIcon icon={faEnvelope} />
-                        </NavLink>
-                    </span>
-                    <span className={'span-end'}>
-                        { element }
-                        <a
-                            href=''
-                        >
-                            <FontAwesomeIcon icon={faGithub} />
-                        </a>
-                        <a
-                            href=''
-                        >
-                            <FontAwesomeIcon icon={faYoutube} />
-                        </a>
-                        <a
-                            href=''
-                        >
-                            <FontAwesomeIcon icon={faSkype} />
-                        </a>
-                        </span>
-
+                <span className={'first-three'}>
+                    <NavLink exact="true" activeclassname="active" to="/home">
+                        <FontAwesomeIcon icon={faHome} />
+                    </NavLink>
+                    <NavLink exact="true" activeclassname="active" className="about-link" to="/about">
+                        <FontAwesomeIcon icon={faUser} />
+                    </NavLink>
+                    <NavLink exact="true" activeclassname="active" className="contact-link" to="/contact">
+                        <FontAwesomeIcon icon={faEnvelope} />
+                    </NavLink>
+                </span>
+                <span className={'span-end'}>
+                    { element }
+                    <a
+                        href=''
+                    >
+                        <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                    <a
+                        href=''
+                    >
+                        <FontAwesomeIcon icon={faYoutube} />
+                    </a>
+                    <a
+                        href=''
+                    >
+                        <FontAwesomeIcon icon={faSkype} />
+                    </a>
+                </span>
             </nav>
         </>
     );

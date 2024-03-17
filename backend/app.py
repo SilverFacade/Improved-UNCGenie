@@ -8,6 +8,7 @@ import json
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
 
+# TODO: updates methods allowed for each endpoint
 
 # Wrapped and Wrapper function to handle the token that should be received from the client
 # to validate their identity
@@ -144,6 +145,7 @@ def graduation_progress(pin):
     return 
 
 
+
 # TODO: The sections_registered endpoint returns the sections a student is registered for from
 # the Student_Sections_Enrolled table (may rename table to Student_Sections_Registered)
 @app.route("/api/sections_registered", methods=['GET'])
@@ -152,12 +154,38 @@ def sections_registered(pin):
     return 
 
 
+
 # TODO: The register endpoint registers a student for a section (see if section is full, if not
-# move to Student_Sections_Enrolled table)
+# move to Student_Sections_Enrolled table, check prereqs, etc)
 @app.route("/api/register", methods=['GET', 'POST'])
 @token_required
 def register(pin):
     return 
+
+
+
+# TODO: The drop endpoint drops a section from the registered sections table
+@app.route("/api/drop", methods=['GET', 'POST'])
+@token_required
+def drop(pin):
+    return 
+
+
+
+# TODO: The add_to_Schedule endpoint adds a section to a student's schedule (check time conflicts)
+@app.route("/api/add_to_Schedule", methods=['GET', 'POST'])
+@token_required
+def add_to_Schedule(pin):
+    return 
+
+
+
+# TODO: The register_Schedule endpoint registers for all the sections in a student's schedule
+@app.route("/api/register_Schedule", methods=['GET', 'POST'])
+@token_required
+def register_Schedule(pin):
+    return 
+
 
 
 # TODO: The sections endpoint returns the sections the client wants

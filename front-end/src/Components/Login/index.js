@@ -47,6 +47,11 @@ const Login = () => {
                 <input type={'password'} placeholder={'Password'} name={'password'} required/>
                 <input type={'submit'} value={'Login'}/>
             </form>
+            <form className={'signup'} onSubmit={(e) => login(e)} id={'signup'}>
+                <input type={'text'} placeholder={'Username'} name={'username'} required/>
+                <input type={'password'} placeholder={'Password'} name={'password'} required/>
+                <input type={'submit'} value={'Sign Up'}/>
+            </form>
         </>
     )
 }
