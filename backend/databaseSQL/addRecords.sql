@@ -5,7 +5,7 @@ insert into "Registration"."Person" (pin, first_name, last_name, password, addre
 values 
 	('98513241', 'Rosie', 'Delacruz', '327914', '1234 Example St', 'RD@gmail.com', '000-000-0000'),
 	('41236346', 'Jorge', 'Erickson', '616435', '1234 Example St', 'GE@gmail.com', '000-000-0000'),
-	('93428713', 'Roger', 'Roger Sykes', '157456', '1234 Example St', 'RS@gmail.com', '000-000-0000'),
+	('93428713', 'Roger', 'Sykes', '157456', '1234 Example St', 'RS@gmail.com', '000-000-0000'),
 	('32187189', 'Jenson', 'White', '613447', '1234 Example St', 'JW@gmail.com', '000-000-0000'),
 	('14269834', 'Wanda', 'Gallegos', '153453', '1234 Example St', 'WG@gmail.com', '000-000-0000'),
 	('32107423', 'Lulu', 'Poole', '163465', '1234 Example St', 'LP@gmail.com', '000-000-0000');
@@ -52,13 +52,13 @@ insert into "Registration"."Section" (subject, course_number, section_number, cr
 									time, waitlist_active, waitlist_capacity, xl_active, 
 									xl_capacity, attribute, instructor_pin)
 values 
-	('MAT', '111', '02', '13412', 12, 30, '2024-08-23', 'Room1', 'Greensboro Campus', 'MWF', '8:00-9:15am',
+	('MAT', '111', '02', '13412', 25, 30, '2024-08-23', 'Room1', 'Greensboro Campus', 'MWF', '8:00-9:15am',
 	0, 5, 0, 5, null, '93428713'),
-	('MAT', '113', '01', '41234', 12, 30, '2024-08-23', 'Room3', 'Greensboro Campus', 'TTH', '12:00-1:15pm',
+	('MAT', '113', '01', '41234', 4, 25, '2024-08-23', 'Room3', 'Greensboro Campus', 'TTH', '12:00-1:15pm',
 	0, 5, 0, 5, null, '93428713'),
-	('CSC', '111', '01', '67312', 12, 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'MWF', '10:00-10:50am',
+	('CSC', '111', '01', '67312', 9, 27, '2024-08-23', 'Room2', 'Greensboro Campus', 'MWF', '10:00-10:50am',
 	0, 5, 0, 5, null, '14269834'),
-	('CSC', '112', '02', '14729', 12, 30, '2024-08-23', 'Room2', 'Greensboro Campus', 'TTH', '2:00-3:15pm',
+	('CSC', '112', '02', '14729', 26, 28, '2024-08-23', 'Room2', 'Greensboro Campus', 'TTH', '2:00-3:15pm',
 	0, 5, 0, 5, null, '14269834');
 
 /*

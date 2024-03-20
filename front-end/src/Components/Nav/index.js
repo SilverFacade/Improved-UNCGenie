@@ -18,7 +18,7 @@ const Nav = () => {
 
     const element = localStorage.getItem('token') ?
         (
-            <a onClick={()=>logout()}>
+            <a onClick={()=>logout()} href='/'>
                 <FontAwesomeIcon icon={faDoorOpen}/>
             </a>
         )
@@ -40,7 +40,7 @@ const Nav = () => {
                     </Link>
                 </span>
                 <span className={'first-three'}>
-                    <NavLink exact="true" activeclassname="active" to="/home">
+                    <NavLink exact="true" activeclassname="active" to="/">
                         <FontAwesomeIcon icon={faHome} />
                     </NavLink>
                     <NavLink exact="true" activeclassname="active" className="about-link" to="/about">

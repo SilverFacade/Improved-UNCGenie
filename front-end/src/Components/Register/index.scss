@@ -5,7 +5,7 @@
     position: absolute;
     width: 90vw;
     margin-left: 5vw;
-    top: 10%;
+    margin-top: 10vh;
     background: rgb(51, 51, 143);
     border-radius: 5vh;
 
@@ -51,28 +51,38 @@
         background: none; 
     }
 
-    .register-or-schedule-button{
-        margin-top: 3vh;
-        display: block;
-        margin: 0 auto;  
-        background: var(--navyaccent2);
-        border: 1px solid var(--navy);
-        border-radius: 1vh;
-        padding: 0.6vh;
-        color: var(--prettypink);
+    #select-register-table-div{
+        position: relative;
+        width: 84.3vw;    
+        margin-right: 13.3vw;    
+        margin-left: 1.2vw;
+
+        #h2-1{
+            text-align: center;
+        }
+
+        .register-or-schedule-dropdown{
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            background: var(--navyaccent2);
+            border: 1px solid var(--navy);
+            border-radius: 1vh;
+            padding: 0.6vh;
+            color: var(--prettypink);
+        }
     }
-  
     
     .registered-classes-table{
         position: relative;
         border-collapse: separate;
         table-layout: fixed;      
         empty-cells: hide;
-        margin-left: 1.2vw;
-        margin-right: 1vw;
-        width: 90.7vw;
+        width: 94vw;
         height: 5vh;
         margin-top: 3vh;
+        margin-left: 1vw;
+        margin-right: 1vw;
         margin-bottom: 10vh;
         border-spacing:1px 1.5vh;
 
@@ -80,12 +90,17 @@
             height: 3vh;
         }
 
-        .registered-classes-table-row{
+        #registered-classes-table-row{
+            height: 5vh;
+        }
+        
+        #scheduled-classes-table-row{
             height: 5vh;
         }     
 
+
         .registered-courses-drop-button{
-            margin-left: 2.5vw;
+            margin-left: 0.5vw;
             width: 8vw;
             background: var(--navyaccent2);
             border: 1px solid var(--navy);
@@ -93,64 +108,99 @@
             padding: 0.8vh;
             color: var(--prettypink);
         }
-    }
-     
 
-    .look-for-class{    
-        position: relative;
-        display: flex;
-        margin-left: 23vw;
-
-
-        .subject-dropdown{
-            position: relative;  
+        .schedule-table-row-buttons{
             display: flex;
-            margin-top: 2vh;
-            margin-bottom: 3vh;
-            margin-left: 1vw;
-            margin-right: 5vw;  
-            background: var(--navyaccent2);
-            border: 1px solid var(--navy);
-            border-radius: 1vh;
-            padding: 0.6vh;
-            color: var(--prettypink);
-        }
-        
-        .course-number-dropdown{
-            position: relative;
-            display: flex;   
-            margin-left: 1vw;
-            margin-top: 2vh;
-            margin-bottom: 3vh;  
-            background: var(--navyaccent2);
-            border: 1px solid var(--navy);
-            border-radius: 1vh;
-            padding: 0.6vh;
-            color: var(--prettypink);
-        }
-        
-        .search-button{
-            position: relative;
-            margin-left: 8vw;
-            margin-top: 2vh;
-            margin-bottom: 2.75vh; 
-            background: var(--navyaccent2);
-            border: 1px solid var(--navy);
-            border-radius: 1vh;
-            padding: 0.6vh;
-            color: var(--prettypink);
-        }    
-    }
+
+            .register-button-schedule{
+                margin-left: 0.5vw;
+                width: 3.5vw;
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
+                font-size: 11px;
+            }
     
+            .scheduled-courses-remove-button{
+                margin-left: 0.5vw;
+                width: 5vw;
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.8vh;
+                color: var(--prettypink);  
+                font-size: 11px;
+            }
+        }
+    }  
+    
+    #course-search-div{
+        position: relative;    
+        margin-right: 13.3vw;
+        margin-left: 1.2vw;
+        width: 84.3vw;      
+        
+        #h2-2{
+            text-align: center;
+        }
+    
+        .look-for-class{    
+            position: relative;
+            display: flex;  
+            width: fit-content;
+            margin:0 auto;
+
+            .subject-dropdown{
+                position: relative;  
+                display: flex;
+                margin-top: 2vh;
+                margin-bottom: 3vh;
+                margin-left: 1vw;
+                margin-right: 5vw;  
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
+            }
+            
+            .course-number-dropdown{
+                position: relative;
+                display: flex;   
+                margin-left: 1vw;
+                margin-top: 2vh;
+                margin-bottom: 3vh;  
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
+            }
+            
+            .search-button{
+                position: relative;
+                margin-left: 5vw;
+                margin-top: 2vh;
+                margin-bottom: 2.75vh; 
+                background: var(--navyaccent2);
+                border: 1px solid var(--navy);
+                border-radius: 1vh;
+                padding: 0.6vh;
+                color: var(--prettypink);
+            }    
+        }
+    }
        
     .sections-table {
         position: relative;
         border-collapse: separate;
         empty-cells: hide;
         table-layout: fixed;
-        margin-left: 1.2vw;
+        margin-left: 1vw;
         margin-right: 1vw;
-        width: 90.7vw;
+        width: 94vw;
         height: 5vh;
         border-spacing:1px 1.5vh;
 
@@ -166,21 +216,25 @@
             display: flex;
     
             .register-button{
-                margin-left: 1.2vw;
+                margin-left: 0.5vw;
+                width: 3.5vw;
                 background: var(--navyaccent2);
                 border: 1px solid var(--navy);
                 border-radius: 1vh;
                 padding: 0.6vh;
                 color: var(--prettypink);
+                font-size: 11px;
             }
             
             .add-to-schedule-button{
-                margin-left: 0.7vw;
+                margin-left: 0.5vw;
+                width: 5.3vw;
                 background: var(--navyaccent2);
                 border: 1px solid var(--navy);
                 border-radius: 1vh;
                 padding: 0.6vh;
-                color: var(--prettypink);
+                color: var(--prettypink); 
+                font-size: 11px;
             }
         }
     }  
