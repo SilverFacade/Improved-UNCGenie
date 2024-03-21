@@ -30,24 +30,16 @@ from "Registration"."Course_Requisite"
 where subject = 'CSC' and course_number = '112';
 
 
+select count(*)
+from "Registration"."Course_Requisite" inner join "Registration"."Student_Courses_Completed" on
+"Registration"."Student_Courses_Completed".subject = "Registration"."Course_Requisite".req_course_subject
+and "Registration"."Student_Courses_Completed".course_number = "Registration"."Course_Requisite".req_course_number
+where "Registration"."Course_Requisite".req_course_subject = 'CSC' 
+and "Registration"."Course_Requisite".req_course_number = '111'
+and "Registration"."Student_Courses_Completed".student_pin = '41236346';
 
-                   
-                   
-                    
-                    
-                    SELECT "Registration"."Schedule".subject, "Registration"."Schedule".course_number, 
-                    "Registration"."Schedule".section_number, "Registration"."Section".days, 
-                    "Registration"."Section".active, "Registration"."Section".capacity,
-                    "Registration"."Section".time,"Registration"."Section".waitlist_active,
-                    "Registration"."Section".waitlist_capacity, "Registration"."Person"."last_name",
-                    "Registration"."Course"."title"
-                    FROM "Registration"."Schedule" inner join "Registration"."Section" on 
-                    "Registration"."Section".course_number = "Registration"."Schedule".course_number and 
-                    "Registration"."Section".section_number = "Registration"."Schedule".section_number and 
-                    "Registration"."Section".subject = "Registration"."Schedule".subject
-                    left join "Registration"."Course" on
-                    "Registration"."Section".course_number = "Registration"."Course".course_number and 
-                    "Registration"."Section".subject = "Registration"."Course".subject
-                    left join "Registration"."Person" on
-                    "Registration"."Section".instructor_pin = "Registration"."Person".pin
-                    WHERE student_pin = '98513241'
+
+truncate table "Registration"."Schedule";
+
+select count(*)
+from "Registration"."Schedule";
