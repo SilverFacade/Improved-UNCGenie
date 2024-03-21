@@ -4,6 +4,8 @@ import {Routes, Route} from "react-router-dom";
 import Home from './Components/Home';
 import Nav from './Components/Nav';
 import Login from './Components/Login';
+import Register from './Components/Register';
+import NotFound from './Components/NotFound';
 
 function App() {
   return (
@@ -11,8 +13,10 @@ function App() {
           <Nav/>
           <div className={'wrapper'}>
               <Routes>
-                  <Route path = {'/home'} element = {<Home />} />
+                  <Route path = {'/'} element = {<Home />} />
                   <Route path = {'/login'} element = {<Login />} />
+                  <Route path = {'/register'} element = {<Register />} />
+                  <Route path = {'*'} element = {<NotFound />} />
               </Routes>
           </div>
       </>

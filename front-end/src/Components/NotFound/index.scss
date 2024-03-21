@@ -1,0 +1,13 @@
+@import url('../assets/css/global.scss');
+
+#maindiv{  
+    position: absolute;
+    width: 40vw;
+    margin-top: 20vh;
+    margin-left: 30vw;
+
+    p {
+        text-align: center;
+        font-size: 30px;
+    }
+}
