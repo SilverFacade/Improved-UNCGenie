@@ -1,0 +1,62 @@
+@import url('../assets/css/global.scss');
+
+form{
+  background: var(--navyaccent);
+  height: 15vh;
+  width: 25vh;
+  border-radius: 2vh;
+  border: 5px solid var(--navy);
+  padding: 2vh;
+
+  input { //. references class, not elements //test
+    background: var(--navyaccent2);
+    border: 1px solid var(--navy);
+    border-radius: 1vh;
+    padding: 1vh;
+    color: var(--prettypink);
+  }
+
+  &.todo {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    max-height: 45vh;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 95%;
+    }
+
+    * {
+      margin: 0.2vh;
+    }
+  }
+
+  &.registerhere {
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &.currentschedule {
+    position: absolute;
+    top: 30%;
+    left: 70%;
+  }
+
+  &.degreeprogress {
+    position: absolute;
+    top: 85%;
+    left: 10%;
+    height: 5vh;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+}

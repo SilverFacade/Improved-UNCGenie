@@ -3,6 +3,10 @@
 
 @import url('../assets/css/global.scss');
 
+body {
+  background: #b48fc9;
+}
+
 .nav-bar {
   background: var(--navy);
   width: 100vw; //view width
