@@ -1,9 +1,9 @@
 # Improved-UNCGenie
 A web app improving some of the features for registration. CSC-490 Project
 
-## Setting up Enviroment
+## Setting up Environment
 ### Windows
-To set up the enviroment for the website we need: Python with Flask (backend), Nodejs with React (frontend), PostgreSQL (database server), and dbeaver. Do a git pull or git pull origin main to get the up to date github repository. Skip each one you have installed.
+To set up the environment for the website we need: Python with Flask (backend), Nodejs with React (frontend), PostgreSQL (database server), and dbeaver. Do a git pull or git pull origin main to get the up to date github repository. Skip each one you have installed.
 
 #### I. Installing Nodejs with React
     1. Go here: https://nodejs.org/en/download and install the windows .msi 64-bit installer, then run it.
