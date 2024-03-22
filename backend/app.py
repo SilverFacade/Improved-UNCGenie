@@ -88,6 +88,8 @@ def student(pin):
 def schedule(pin):
     # Get info from client that will be used to query database, pin is passed to all endpoints 
     # from the token validation wrapped function.
+    # (commented out the data given from client below since we're only doing 1 schedule, other endpoints
+    # receive data like /api/sections endpoint just below this)
 
     # schedule = request.json['schedule']   / getting rid of multiple schedule for now
 
@@ -128,7 +130,7 @@ def schedule(pin):
         cur.execute(script, (pin, ))
            
         # Storing data from query in rv. cur.fetchall fetches all the records returned from query,
-        # the rest adds the keys to the values so we have key-value pairs when returning the json file
+        # this adds the keys to the values so we have key-value pairs when returning the json file
         rv = [dict((cur.description[i][0], value)  \
             for i, value in enumerate(row)) for row in cur.fetchall()]
 
@@ -194,11 +196,34 @@ def sections(pin):
 
 
 
-# TODO: The courses endpoint returns the courses the client wants
+# The courses endpoint returns the courses and course info the client wants
 @app.route("/api/courses", methods=['GET'])
 @token_required
 def courses(pin):
-    return 
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT *
+                    FROM "Registration"."Course" '''
+      
+        cur.execute(script)     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200
 
 
 

@@ -43,7 +43,7 @@ CREATE TABLE "Registration"."Course" (
   "course_number" char(3),
   "title" varchar(40),
   "credits" int NOT NULL,
-  "requisites" bool,
+  "description" varchar(1000),
   PRIMARY KEY ("subject", "course_number")
 );
 

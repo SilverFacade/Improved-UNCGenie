@@ -36,7 +36,7 @@ const Nav = () => {
                 <span className={'logos'}>
                     <Link className='logo' to='/'>
                          <img src={''} alt="logo"/>
-                         <img className="sub-logo" src={''} alt="logo"/> 
+                         {/*<img className="sub-logo" src={''} alt="logo"/>*/} 
                     </Link>
                 </span>
                 <span className={'first-three'}>
