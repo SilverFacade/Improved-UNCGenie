@@ -1,0 +1,80 @@
+@import url('../assets/css/global.scss');
+
+
+.scrollList{
+  position:absolute;
+  height: 92vh;
+  max-height: 92vh;
+  width: 15vw;
+  margin-top: 8vh;
+  overflow:hidden;
+  overflow-y:scroll;
+  background: var(--navy);
+
+    #classList{
+      list-style-type: none;
+      text-align: center;
+      padding: 0;
+      margin-left: 2.5vw;
+      color: var(--prettypink);
+
+      li { 
+        border: 5px solid var(--navy);
+        margin-top: 3vh;
+        width: 10vw;    
+        border-radius: 2vh;  
+        background: var(--navyaccent);
+      }
+    }
+}
+
+.classInfoDiv{
+  position: absolute;
+  margin-left: 20vw;
+  margin-top: 13vh;
+  width: 75vw;
+  background: var(--navy);
+  border-radius: 2vh;
+
+  #titleDiv{
+    margin-left: 10vw;
+    border-radius: 2vh;
+    width: 55vw;
+
+    h1 {
+      text-align: center;
+    }
+    
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8vh;
+    }
+  }
+
+  #descDiv{
+    background: var(--navyaccent);
+    margin-top: 5vh;
+    margin-left: 10vw;
+    border-radius: 2vh;
+    width: 55vw;
+
+    p {
+      text-align: center;
+    }
+  }
+}
+
+.loginRequired{
+  position: absolute;
+  margin-top: 20vh;
+  margin-left: 45vw;
+
+  p {
+      text-align: center;
+  }
+}
