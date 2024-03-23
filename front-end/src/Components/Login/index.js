@@ -1,5 +1,6 @@
 import "./index.scss"
 import jpg1 from '../imgs/stockPhoto.jpg';
+import Nav from '../Nav';
 
 const Login = () => {
 
@@ -43,7 +44,8 @@ const Login = () => {
 
     return (
         <>
-            {/*
+            <Nav/>
+
             <div className={'loginpictures'}>
                 <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
             </div>
@@ -54,7 +56,6 @@ const Login = () => {
                     register for your preferred classes.
                 </p>
             </div>
-             */}
 
             <form className={'login'} onSubmit={(e) => login(e)} id={'login'}>
                 <input type={'text'} placeholder={'Username'} name={'username'} required/>

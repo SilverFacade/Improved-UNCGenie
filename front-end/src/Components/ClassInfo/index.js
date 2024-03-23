@@ -1,5 +1,6 @@
 import "./index.scss"
 import { useState, useEffect } from "react";
+import Nav from '../Nav';
 
 const ClassInfo = () => {
     const [courses, setCourses] = useState(null);
@@ -30,6 +31,7 @@ const ClassInfo = () => {
     if(localStorage.getItem('token')) {
         return (
             <>
+            <Nav/>
             <div className = {'scrollList'}>
                 <nav>
                     <ul id = {'classList'}>

@@ -1,62 +1,111 @@
 @import url('../assets/css/global.scss');
 
-form{
-  background: var(--navyaccent);
-  height: 15vh;
-  width: 25vh;
-  border-radius: 2vh;
-  border: 5px solid var(--navy);
-  padding: 2vh;
+#mainDiv{
+  margin-top: 10vh;
 
-  input { //. references class, not elements //test
-    background: var(--navyaccent2);
-    border: 1px solid var(--navy);
-    border-radius: 1vh;
-    padding: 1vh;
+  p {
+    text-align: center;
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  button {
+    border: 5px solid var(--navy);
+    font-size: 12px;
+    width: 10vw;    
+    border-radius: 2vh;  
+    background: var(--navyaccent);
     color: var(--prettypink);
   }
 
-  &.todo {
-    position: absolute;
-    top: 30%;
-    left: 5%;
-    max-height: 45vh;
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
+  #redirectButtons{
+    margin: 5vh auto;
+    width:fit-content;
+  
+    #registerButton{
+    }
 
-    span {
+    #classInfoButton{
+      margin-left: 3vw;
+    }
+  }
+
+  #currentSchedule {    
+    background: var(--navyaccent);
+    margin-left: 27.25vw;
+    width: 45vw;
+    border-radius: 2vh;
+    border: 0.3vw solid var(--navy);
+
+    #checkScheduleButton{
+      margin-top: 1vh;
+      margin-left: 17.5vw;
+    }
+
+    .registered-classes-table{
+      width: 35vw;
+      margin-left: 5vw;
+      margin-top: 2vh;
+      position: relative;
+      border-collapse: separate; 
+
+      #registered-classes-table-row{
+        text-align:center;
+      }
+
+    } 
+  }  
+
+  form {
+    background: var(--navyaccent);
+    height: 15vh;
+    width: 20vw;
+    border-radius: 2vh;
+    border: 0.3vw solid var(--navy);
+    padding: 2vh; 
+    float: left;
+  
+    &.todo {
+      margin-top: 2vh;
+      margin-left: 2vw;
+      max-height: 45vh;
+      height: 20vh;
       display: flex;
-      flex-direction: column-reverse;
-      height: 95%;
+      flex-direction: column;
+  
+      span {
+        height: 95%;
+      }
+  
+      * {
+        margin: 0.2vh;
+      }
     }
-
-    * {
-      margin: 0.2vh;
-    }
-  }
-
-  &.registerhere {
-    position: absolute;
-    top: 30%;
-    left: 35%;
-    display: flex;
-    justify-content: center;
-  }
-
-  &.currentschedule {
-    position: absolute;
-    top: 30%;
-    left: 70%;
-  }
-
-  &.degreeprogress {
-    position: absolute;
-    top: 85%;
-    left: 10%;
-    height: 5vh;
-    width: 80%;
-    display: flex;
-    justify-content: center;
   }
 }
+
+#degreeprogress{
+  background: var(--navyaccent);
+  margin: auto;
+  margin-top: 2vh;
+  width: 44vw;
+  border-radius: 2vh;
+  border: 0.3vw solid var(--navy);
+  padding: 1vh; 
+
+  #degree-progress-button{
+    margin-left: 17vw;
+  }
+}
+
+
+#generalHomepage{
+  margin-top: 20vh;
+  text-align: center;
+  font-size: 30px;
+}
+
+
+

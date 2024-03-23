@@ -28,3 +28,17 @@ form{
     left: 80%;
   }
 }
+
+
+.loginRequired{
+  position: absolute;
+  margin-top: 20vh;
+  margin-left: 45vw;
+
+  p {
+      font-size: 30px;
+      text-align: center;
+  }
+}
+
+
