@@ -3,7 +3,7 @@
  * key constraints
  */
 
-drop table "Registration"."Student_Courses_Completed" ;
+drop table "Registration"."Student_Courses_Completed";
 
 drop table "Registration"."Student_Sections_Registered" ;
 

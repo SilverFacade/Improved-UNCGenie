@@ -1,3 +1,50 @@
+/*
+*   About This database:
+*
+*   Person Table: 
+*
+*   Student Table:
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+
 CREATE SCHEMA "Registration";
 
 CREATE TABLE "Registration"."Person" (
@@ -44,6 +91,9 @@ CREATE TABLE "Registration"."Course" (
   "title" varchar(40),
   "credits" int NOT NULL,
   "description" varchar(1000),
+  "si" bool,
+  "wi" bool,
+  "marker" varchar(10),
   PRIMARY KEY ("subject", "course_number")
 );
 

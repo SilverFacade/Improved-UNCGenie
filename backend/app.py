@@ -47,7 +47,7 @@ def login():
         cur = conn.cursor()
 
         # instructors can't log in for now
-
+        
         script = ''' SELECT COUNT(*)
 	                FROM "Registration"."Person"
 	                WHERE pin = %s and password = %s '''
@@ -73,12 +73,40 @@ def login():
 
 
 
-# TODO: The student endpoint returns information about the student in the person table. (maybe from
+# The student endpoint returns information about the student in the person table. (maybe from
 # Student table and Student_Major and Student_Minor too)
 @app.route("/api/student", methods=['GET'])
 @token_required
 def student(pin):
-    return 
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT *
+                    FROM "Registration"."Student" left join "Registration"."Person" on
+                    "Registration"."Student".pin = "Registration"."Person".pin  left join 
+                    "Registration"."Student_Major" on "Registration"."Student".pin = "Registration"."Student_Major".student_pin
+                    left join "Registration"."Student_Minor" on 
+                    "Registration"."Student".pin = "Registration"."Student_Minor".student_pin
+                    WHERE "Registration"."Student".pin = %s '''
+      
+        cur.execute(script, (pin,))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200
 
 
 
@@ -332,9 +360,9 @@ def register(pin):
         # check if already registered
         script = ''' SELECT COUNT(*)
                     FROM "Registration"."Student_Sections_Registered"
-                    WHERE student_pin = %s and subject = %s and course_number = %s and section_number = %s '''
+                    WHERE student_pin = %s and subject = %s and course_number = %s '''
       
-        cur.execute(script, (pin, subject, courseNumber, sectionNumber))
+        cur.execute(script, (pin, subject, courseNumber))
 
         rv = cur.fetchone()
         rv = int(rv[0])
@@ -342,7 +370,7 @@ def register(pin):
         print(rv)
 
         if rv > 0:
-            return jsonify({'status' : '400', 'error' : 'Error: You already registered for this section'}), 400
+            return jsonify({'status' : '400', 'error' : 'Error: You already registered for this course'}), 400
         
         # check capacity
         script = ''' SELECT active, capacity

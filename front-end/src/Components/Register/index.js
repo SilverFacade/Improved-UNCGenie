@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./index.scss"
+import Nav from '../Nav';
 
 let displayRegTable = false;
 let displaySchTable = false;
@@ -206,10 +207,11 @@ const Register = () => {
     if(localStorage.getItem('token')) {
         return (
             <>
+                <Nav/>
                 <div className = {'introduction'}>
                     <h1>Registration Page</h1>
                         <p>
-                        Here you can look for classes to add, update your potential schedule, or drop classes.
+                        Here you can look for classes to add, add sections to a list of potential classes to register for, or drop classes.
                         </p>
                 </div>
 
@@ -219,7 +221,7 @@ const Register = () => {
                         <select className= {'register-or-schedule-dropdown'} onChange={(e) => getCRDropdownValue(e)}>
                             <option >Select...</option>
                             <option value="registered-classes">Registered Courses</option>
-                            <option value="schedules">Schedule</option>
+                            <option value="schedules">Watched Classes</option>
                         </select>
                     </div>
 
@@ -243,7 +245,7 @@ const Register = () => {
                             {registered && displayRegTable && registered.map((regcourse, i) => (
                             <tr id = 'registered-classes-table-row' key={i}>
                                 <td className = {'data-cell'}>{regcourse.crn}</td>
-                                <td className = {'data-cell'}>{regcourse.title}</td>
+                                <td className = {'data-cell'} style={{fontSize: "12px"}}>{regcourse.title}</td>
                                 <td className = {'data-cell'}>{regcourse.subject}</td>
                                 <td className = {'data-cell'}>{regcourse.course_number}</td>
                                 <td className = {'data-cell'}>{regcourse.section_number}</td>
@@ -261,7 +263,7 @@ const Register = () => {
                             {schedule && displaySchTable && schedule.map((sch, i) => (
                             <tr id = {'scheduled-classes-table-row'} key={i}>
                                 <td className = {'data-cell'}>{sch.crn}</td>
-                                <td className = {'data-cell'}>{sch.title}</td>
+                                <td className = {'data-cell'} style={{fontSize: "12px"}}>{sch.title}</td>
                                 <td className = {'data-cell'}>{sch.subject}</td>
                                 <td className = {'data-cell'}>{sch.course_number}</td>
                                 <td className = {'data-cell'}>{sch.section_number}</td>
@@ -291,6 +293,9 @@ const Register = () => {
                                 <option value="MAT">MAT</option>
                                 <option value="PHI">PHI</option>
                                 <option value="HIS">HIS</option>
+                                <option value="BIO">BIO</option>
+                                <option value="PHY">PHY</option>
+                                <option value="FRE">FRE</option>
                             </select>
                             <p>Course Number: </p>               
                             <select className = {'course-number-dropdown'} name="Course Number">
@@ -324,7 +329,7 @@ const Register = () => {
                             {sections && sections.map((section, i) => (
                             <tr className = {'sections-table-row'} key={i}>
                                 <td className = {'data-cell'}>{section.crn}</td>
-                                <td className = {'data-cell'}>{section.title}</td>
+                                <td className = {'data-cell'} style={{fontSize: "12px"}}>{section.title}</td>
                                 <td className = {'data-cell'}>{section.subject}</td>
                                 <td className = {'data-cell'}>{section.course_number}</td>
                                 <td className = {'data-cell'}>{section.section_number}</td>
@@ -337,7 +342,7 @@ const Register = () => {
                                     <span className = {'sections-table-row-buttons'}> 
                                         <input className = {'register-button'} type={'button'} value={'Register'} 
                                         onClick={(e) => registerFromRegisterTable(e, section.subject, section.course_number, section.section_number)} float = "left"/>
-                                        <input className = {'add-to-schedule-button'} type={'button'} value={'Add to Schedule'}
+                                        <input className = {'add-to-schedule-button'} type={'button'} value={'Add to Watched'}
                                         onClick={(e) => addToSchedule(e, section.subject, section.course_number, section.section_number)} float = "left"/>
                                     </span>
                                 </td>

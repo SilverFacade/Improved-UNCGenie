@@ -5,7 +5,7 @@
     position: absolute;
     width: 90vw;
     margin-left: 5vw;
-    margin-top: 10vh;
+    margin-top: 13vh;
     background: rgb(51, 51, 143);
     border-radius: 5vh;
 
@@ -23,7 +23,7 @@
     position: absolute;
     margin-left: 1vw;
     width: 98vw;
-    margin-top: 30vh;
+    margin-top: 35vh;
     background: rgb(56, 49, 49); 
     border-radius: 5vh;
 
@@ -84,6 +84,7 @@
         position: relative;
         border-collapse: separate; 
         empty-cells: hide;
+        table-layout: fixed;
         width: 94vw;
         height: 5vh;
         margin-top: 3vh;
@@ -198,6 +199,7 @@
     .sections-table {
         position: relative;
         border-collapse: separate;
+        table-layout: fixed;
         empty-cells: hide;
         margin-left: 2vw;
         margin-bottom: 5vh;
@@ -247,6 +249,7 @@
     margin-left: 45vw;
 
     p {
+        font-size: 30px;
         text-align: center;
     }
 }

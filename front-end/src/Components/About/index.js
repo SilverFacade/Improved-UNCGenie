@@ -1,4 +1,5 @@
 import "./index.scss"
+import Nav from '../Nav';
 
 const About = () => {
 
@@ -43,28 +44,21 @@ const About = () => {
     
 
     
-    if(localStorage.getItem('token')) {
-        return (
-            <>
-                <form className={'login'} onSubmit={(e) => about(e)} id={'login'}>
-                    <input type={'text'} placeholder={'Username'} name={'username'} required/>
-                    <input type={'password'} placeholder={'Password'} name={'password'} required/>
-                    <input type={'submit'} value={'Login'}/>
-                </form>
-                <form className={'signup'} onSubmit={(e) => about(e)} id={'signup'}>
-                    <input type={'text'} placeholder={'Username'} name={'username'} required/>
-                    <input type={'password'} placeholder={'Password'} name={'password'} required/>
-                    <input type={'submit'} value={'Sign Up'}/>
-                </form>
-            </>
-        )
-    } else {    
-        return (
-            <div className={'loginRequired'}>
-                <p>You must Login</p>
-            </div>
-        )
-    }
+    return (
+        <>
+            <Nav/>
+            <form className={'login'} onSubmit={(e) => about(e)} id={'login'}>
+                <input type={'text'} placeholder={'Username'} name={'username'} required/>
+                <input type={'password'} placeholder={'Password'} name={'password'} required/>
+                <input type={'submit'} value={'Login'}/>
+            </form>
+            <form className={'signup'} onSubmit={(e) => about(e)} id={'signup'}>
+                <input type={'text'} placeholder={'Username'} name={'username'} required/>
+                <input type={'password'} placeholder={'Password'} name={'password'} required/>
+                <input type={'submit'} value={'Sign Up'}/>
+            </form>
+        </>
+    )
 }
 
 export default About
