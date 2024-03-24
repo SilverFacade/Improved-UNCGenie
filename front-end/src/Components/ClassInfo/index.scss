@@ -1,6 +1,10 @@
 @import url('../assets/css/global.scss');
 
 
+body {
+  background: #b48fc9;
+}
+
 .scrollList{
   position:absolute;
   height: 92vh;
@@ -24,7 +28,9 @@
         font-size: 12px;
         width: 10vw;    
         border-radius: 2vh;  
+        color: black;
         background: var(--navyaccent);
+        border-color: var(--prettypink);
       }
     }
 }

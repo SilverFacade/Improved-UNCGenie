@@ -1,12 +1,16 @@
 @import url('../assets/css/global.scss');
 
 
+body {
+  background: #b48fc9;
+}
+
 .introduction{
     position: absolute;
     width: 90vw;
     margin-left: 5vw;
     margin-top: 13vh;
-    background: rgb(51, 51, 143);
+    background: rgb(119, 58, 94); 
     border-radius: 5vh;
 
     h1{
@@ -24,7 +28,8 @@
     margin-left: 1vw;
     width: 98vw;
     margin-top: 35vh;
-    background: rgb(56, 49, 49); 
+    margin-bottom: 5vh;
+    background: rgb(119, 58, 94); 
     border-radius: 5vh;
 
     th{

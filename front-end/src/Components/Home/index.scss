@@ -1,5 +1,9 @@
 @import url('../assets/css/global.scss');
 
+body {
+  background: #b48fc9;
+}
+
 #mainDiv{
   margin-top: 10vh;
 
@@ -17,7 +21,7 @@
     width: 10vw;    
     border-radius: 2vh;  
     background: var(--navyaccent);
-    color: var(--prettypink);
+    color: black;
   }
 
   #redirectButtons{
