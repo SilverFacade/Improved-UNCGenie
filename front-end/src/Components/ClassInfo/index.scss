@@ -1,10 +1,5 @@
 @import url('../assets/css/global.scss');
 
-
-body {
-  background: #b48fc9;
-}
-
 .scrollList{
   position:absolute;
   height: 92vh;
@@ -20,7 +15,6 @@ body {
       text-align: center;
       padding: 0;
       margin-left: 2.5vw;
-      color: var(--prettypink);
 
       li { 
         border: 5px solid var(--navy);
@@ -30,7 +24,7 @@ body {
         border-radius: 2vh;  
         color: black;
         background: var(--navyaccent);
-        border-color: var(--prettypink);
+        border-color: rgb(85, 9, 85);
       }
     }
 }
@@ -59,16 +53,18 @@ body {
     p {
       text-align: center;
       font-size: 24px;
-      margin-bottom: 8vh;
+      margin-bottom: 5vh;
     }
   }
 
   #descDiv{
     background: var(--navyaccent);
-    margin-top: 5vh;
-    margin-left: 10vw;
+    margin-top: 3vh;
+    margin-left: 7.5vw;
+    margin-bottom: 1vh;
     border-radius: 2vh;
-    width: 55vw;
+    width: 60vw;
+    padding: 1px;
 
     p {
       text-align: center;

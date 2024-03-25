@@ -1,9 +1,5 @@
 @import url('../assets/css/global.scss');
 
-body {
-  background: #b48fc9;
-}
-
 #mainDiv{
   margin-top: 10vh;
 
@@ -105,11 +101,54 @@ body {
 }
 
 
+
 #generalHomepage{
-  margin-top: 20vh;
-  text-align: center;
-  font-size: 30px;
+  #generalHomepageHeader{
+    margin: 0 auto;
+    margin-top: 15vh;
+    font-size: 30px;
+    width: fit-content;
+    text-align: center;
+    border-radius: 2vh;
+    background: var(--navyaccent);
+    border: 0.3vw solid var(--navy);
+  
+    h1{
+      font-size: 25px;
+      margin: 1vw;
+    }
+  }
+
+  #generalHomepageImage{
+    margin: 0 auto;
+    margin-top: 5vh;
+
+    #photo1{
+      height: 53vh;
+      width: 50vw;
+      border-radius: 2vh;
+      margin-left: 25vw;
+    }
+  }
+  
+  #generalHomepageBody{
+    margin: 0 auto;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    font-size: 20px;
+    width: 60vw;
+    text-align: center;
+    border-radius: 2vh;
+    background: var(--navyaccent);
+    border: 0.3vw solid var(--navy);
+  
+    p {
+      font-size: 18px;
+    }
+  }
 }
+
+
 
 
 
