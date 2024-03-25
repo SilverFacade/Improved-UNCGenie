@@ -1,9 +1,5 @@
 @import url('../assets/css/global.scss');
 
-body {
-  background: #b48fc9;
-}
-
 form{
   background: var(--navyaccent);
   height: 15vh;
@@ -32,7 +28,6 @@ form{
     left: 80%;
   }
 }
-
 
 .loginRequired{
   position: absolute;

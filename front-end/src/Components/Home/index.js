@@ -1,5 +1,6 @@
 import "./index.scss"
 import {useState, useEffect} from "react";
+import jpg1 from '../imgs/UNCGphoto.jpg';
 import Nav from '../Nav';
 
 const Home = () => {
@@ -121,7 +122,19 @@ const Home = () => {
             <>
                 <Nav/>
                 <div id={'generalHomepage'}>
-                   <p>General Homepage here</p>
+                    <div id={'generalHomepageHeader'}>
+                       <h1>Web Registration App</h1>
+                    </div>
+
+                    <div id={'generalHomepageImage'}>
+                        <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
+                    </div>
+
+                    <div id={'generalHomepageBody'}>
+                       <p>The Web Registration App is a website that makes registering for classes easy...... <br/>
+                       ...................................................................................... <br/>
+                       .................................</p>
+                    </div>
                 </div>
             </>
         )
