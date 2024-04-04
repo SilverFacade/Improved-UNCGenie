@@ -202,7 +202,7 @@ const Register = () => {
             setRegistered(data);
         });
     }
-
+    
 
     if(localStorage.getItem('token')) {
         return (

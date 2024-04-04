@@ -12,7 +12,7 @@
   }
 
   button {
-    border: 5px solid var(--navy);
+    border: 3px solid var(--navy);
     font-size: 12px;
     width: 10vw;    
     border-radius: 2vh;  
@@ -30,18 +30,22 @@
     #classInfoButton{
       margin-left: 3vw;
     }
+
+    #progressButton{
+      margin-left: 3vw;
+    }
   }
 
   #currentSchedule {    
     background: var(--navyaccent);
-    margin-left: 27.25vw;
+    margin-left: 42vw;
     width: 45vw;
     border-radius: 2vh;
-    border: 0.3vw solid var(--navy);
+    border: 0.2vw solid var(--navy);
 
     #checkScheduleButton{
-      margin-top: 1vh;
       margin-left: 17.5vw;
+      margin-top: 0.5vh;
     }
 
     .registered-classes-table{
@@ -63,13 +67,12 @@
     height: 15vh;
     width: 20vw;
     border-radius: 2vh;
-    border: 0.3vw solid var(--navy);
+    border: 0.2vw solid var(--navy);
     padding: 2vh; 
     float: left;
   
     &.todo {
-      margin-top: 2vh;
-      margin-left: 2vw;
+      margin-left: 13vw;
       max-height: 45vh;
       height: 20vh;
       display: flex;
@@ -84,69 +87,27 @@
       }
     }
   }
-}
 
-#degreeprogress{
-  background: var(--navyaccent);
-  margin: auto;
-  margin-top: 2vh;
-  width: 44vw;
-  border-radius: 2vh;
-  border: 0.3vw solid var(--navy);
-  padding: 1vh; 
-
-  #degree-progress-button{
-    margin-left: 17vw;
-  }
-}
-
-
-
-#generalHomepage{
-  #generalHomepageHeader{
-    margin: 0 auto;
-    margin-top: 15vh;
-    font-size: 30px;
-    width: fit-content;
-    text-align: center;
-    border-radius: 2vh;
+  #degreeprogress{
+    position: absolute;
     background: var(--navyaccent);
-    border: 0.3vw solid var(--navy);
-  
-    h1{
-      font-size: 25px;
-      margin: 1vw;
-    }
-  }
-
-  #generalHomepageImage{
-    margin: 0 auto;
-    margin-top: 5vh;
-
-    #photo1{
-      height: 53vh;
-      width: 50vw;
-      border-radius: 2vh;
-      margin-left: 25vw;
-    }
-  }
-  
-  #generalHomepageBody{
-    margin: 0 auto;
-    margin-top: 5vh;
-    margin-bottom: 1vh;
-    font-size: 20px;
-    width: 60vw;
-    text-align: center;
+    height: 2vh;
+    margin: auto;
+    bottom: 1vh;
+    left: 35vw;
+    width: 30vw;
     border-radius: 2vh;
-    background: var(--navyaccent);
-    border: 0.3vw solid var(--navy);
+    border: 0.2vw solid var(--navy);
+    padding: 1vh; 
   
     p {
-      font-size: 18px;
+      font-size: 10px;
+      margin-top: 0;
     }
   }
 }
+
+
 
 
 

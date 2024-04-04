@@ -2,6 +2,7 @@ import "./index.scss"
 import {useState, useEffect} from "react";
 import jpg1 from '../imgs/UNCGphoto.jpg';
 import Nav from '../Nav';
+import Login from '../Login';
 
 const Home = () => {
     const [registered, setRegistered] = useState(null);
@@ -61,17 +62,29 @@ const Home = () => {
                     {student && <h1 id={'welcome'}>Welcome, {student[0].first_name}</h1>}
                     
                     
-                    <p>Plan your schedule, register, Look for information on courses, etc...</p>
+                    <p>Plan your schedule, register, Look for information on courses, etc... <br/> ...</p>
                     
                     <div id={'redirectButtons'}>
                         <a href="/register">
-                            <button type = "button" id={'registerButton'}> Register!</button>
+                            <button type = "button" id={'registerButton'}> Register</button>
                         </a>
                         <a href="/classInfo">
                             <button type = "button" id={'classInfoButton'}>Course Info</button>
                         </a>
+                        <a href="/progress">
+                            <button type = "button" id={'progressButton'}>Degree Progress</button>
+                        </a>
                     </div>
 
+                    <form className={'todo'} onSubmit={(e) => AddToList(e)} id={'todo'}>
+                        <span>
+                            {
+                                initState.map((task) => (<div onClick={(e)=>e.target.remove()}> {task}</div>))
+                            }
+                        </span>
+                        <input type={'text'} placeholder={'Enter Task Here'} id={'taskinput'} required/>
+                        <input type={'submit'} value={'Add To List'}/>
+                    </form>
 
                     <div id={'currentSchedule'}>
                         <button type = "button" id={'checkScheduleButton'} onClick={(e) => 
@@ -100,19 +113,11 @@ const Home = () => {
                         </table>
                     </div>
 
-                    <div id={'degreeprogress'}>
-                        <button type = "button" id={'degree-progress-button'}>View Progress</button>
+                    <div id={'degreeprogress'} >
+                        <a href={'/progress'}>
+                            <p>degree progress percent</p>
+                        </a>
                     </div>
-
-                    <form className={'todo'} onSubmit={(e) => AddToList(e)} id={'todo'}>
-                        <span>
-                            {
-                                initState.map((task) => (<div onClick={(e)=>e.target.remove()}> {task}</div>))
-                            }
-                        </span>
-                        <input type={'text'} placeholder={'Enter Task Here'} id={'taskinput'} required/>
-                        <input type={'submit'} value={'Add To List'}/>
-                    </form>
 
                 </div>
             </>
@@ -120,22 +125,7 @@ const Home = () => {
     } else {    
         return (
             <>
-                <Nav/>
-                <div id={'generalHomepage'}>
-                    <div id={'generalHomepageHeader'}>
-                       <h1>Web Registration App</h1>
-                    </div>
-
-                    <div id={'generalHomepageImage'}>
-                        <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
-                    </div>
-
-                    <div id={'generalHomepageBody'}>
-                       <p>The Web Registration App is a website that makes registering for classes easy...... <br/>
-                       ...................................................................................... <br/>
-                       .................................</p>
-                    </div>
-                </div>
+                <Login/>
             </>
         )
     }

@@ -43,7 +43,7 @@ const Nav = () => {
                     <NavLink exact="true" activeclassname="active" to="/">
                         <FontAwesomeIcon icon={faHome} />
                     </NavLink>
-                    <NavLink exact="true" activeclassname="active" className="about-link" to="/about">
+                    <NavLink exact="true" activeclassname="active" className="personal-link" to="/personal">
                         <FontAwesomeIcon icon={faUser} />
                     </NavLink>
                     <NavLink exact="true" activeclassname="active" className="contact-link" to="/contact">
