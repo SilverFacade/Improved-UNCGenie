@@ -44,8 +44,6 @@ const Login = () => {
 
     return (
         <>
-            <Nav/>
-
             <div className={'loginpictures'}>
                 <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
             </div>

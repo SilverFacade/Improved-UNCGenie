@@ -1,0 +1,28 @@
+@import url('../assets/css/global.scss');
+
+#infoDiv {
+    margin-top: 17vh;
+    margin-left: 12.5vw;
+    width: 75vw;
+    height: fit-content;
+
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        margin-left: 5vw;
+        font-size: 20px;
+    }
+
+    #homeButton {
+        border: 3px solid var(--navy);
+        margin-top: 2vh;
+        margin-left: 32.75vw;
+        font-size: 12px;
+        width: 10vw;    
+        border-radius: 2vh;  
+        background: var(--navyaccent);
+        color: black;
+    }
+}

@@ -1,9 +1,5 @@
 @import url('../assets/css/global.scss');
 
-body {
-  background: #b48fc9;
-}
-
 #mainDiv{
   margin-top: 10vh;
 
@@ -16,7 +12,7 @@ body {
   }
 
   button {
-    border: 5px solid var(--navy);
+    border: 3px solid var(--navy);
     font-size: 12px;
     width: 10vw;    
     border-radius: 2vh;  
@@ -34,18 +30,22 @@ body {
     #classInfoButton{
       margin-left: 3vw;
     }
+
+    #progressButton{
+      margin-left: 3vw;
+    }
   }
 
   #currentSchedule {    
     background: var(--navyaccent);
-    margin-left: 27.25vw;
+    margin-left: 42vw;
     width: 45vw;
     border-radius: 2vh;
-    border: 0.3vw solid var(--navy);
+    border: 0.2vw solid var(--navy);
 
     #checkScheduleButton{
-      margin-top: 1vh;
       margin-left: 17.5vw;
+      margin-top: 0.5vh;
     }
 
     .registered-classes-table{
@@ -67,13 +67,12 @@ body {
     height: 15vh;
     width: 20vw;
     border-radius: 2vh;
-    border: 0.3vw solid var(--navy);
+    border: 0.2vw solid var(--navy);
     padding: 2vh; 
     float: left;
   
     &.todo {
-      margin-top: 2vh;
-      margin-left: 2vw;
+      margin-left: 13vw;
       max-height: 45vh;
       height: 20vh;
       display: flex;
@@ -88,28 +87,29 @@ body {
       }
     }
   }
-}
 
-#degreeprogress{
-  background: var(--navyaccent);
-  margin: auto;
-  margin-top: 2vh;
-  width: 44vw;
-  border-radius: 2vh;
-  border: 0.3vw solid var(--navy);
-  padding: 1vh; 
-
-  #degree-progress-button{
-    margin-left: 17vw;
+  #degreeprogress{
+    position: absolute;
+    background: var(--navyaccent);
+    height: 2vh;
+    margin: auto;
+    bottom: 1vh;
+    left: 35vw;
+    width: 30vw;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
+    padding: 1vh; 
+  
+    p {
+      font-size: 10px;
+      margin-top: 0;
+    }
   }
 }
 
 
-#generalHomepage{
-  margin-top: 20vh;
-  text-align: center;
-  font-size: 30px;
-}
+
+
 
 
 

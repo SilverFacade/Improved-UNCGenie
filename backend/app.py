@@ -67,7 +67,8 @@ def login():
     if rv < 1:   
         return jsonify({'message':'Wrong PIN or password', 'status' : '401'}), 401
 
-    token = jwt.encode({'pin' : pin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(hours=10)}, app.config['SECRET_KEY'])
+    # setting token to essentially unlimited time, less secure but was having problems on frontend with tokens.
+    token = jwt.encode({'pin' : pin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(days=13465)}, app.config['SECRET_KEY'])
 
     return jsonify({'token' : token, 'status' : 200}), 200
 
@@ -255,30 +256,203 @@ def courses(pin):
 
 
 
-# TODO: The courses_completed endpoint returns the courses a student has completed from the 
+# The courses_remaining endpoint returns the courses a student has to complete to get their degree
+@app.route("/api/courses_remaining", methods=['GET'])
+@token_required
+def courses_remaining(pin):
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        # get major of student first
+        script = ''' SELECT major_name
+                    FROM "Registration"."Student_Major" 
+                    WHERE "Registration"."Student_Major".student_pin =  %s '''
+      
+        cur.execute(script, (pin, ))     
+
+        rv = cur.fetchone()
+
+        major = rv[0]
+
+        # get minor of student
+        script = ''' SELECT minor_name
+                    FROM "Registration"."Student_Minor" 
+                    WHERE "Registration"."Student_Minor".student_pin =  %s '''
+      
+        cur.execute(script, (pin, ))     
+
+        rv = cur.fetchone()
+
+        minor = rv[0]
+
+        script = ''' SELECT "Registration"."Major_Courses".subject,
+                    "Registration"."Major_Courses".course_number
+                    FROM "Registration"."Major_Courses"
+                    left join "Registration"."Student_Courses_Completed" on
+                    "Registration"."Major_Courses".subject = "Registration"."Student_Courses_Completed".subject and
+                    "Registration"."Major_Courses".course_number = "Registration"."Student_Courses_Completed".course_number 
+                    WHERE "Registration"."Major_Courses".major_name = %s and 
+                    "Registration"."Student_Courses_Completed".subject IS NULL and 
+                    "Registration"."Student_Courses_Completed".course_number IS NULL
+                    ORDER BY "Registration"."Major_Courses".course_number'''
+      
+        cur.execute(script, (major, ))       
+        
+        rv1 = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+        script = ''' SELECT "Registration"."Minor_Courses".subject,
+                    "Registration"."Minor_Courses".course_number
+                    FROM "Registration"."Minor_Courses"
+                    left join "Registration"."Student_Courses_Completed" on
+                    "Registration"."Minor_Courses".subject = "Registration"."Student_Courses_Completed".subject and
+                    "Registration"."Minor_Courses".course_number = "Registration"."Student_Courses_Completed".course_number 
+                    WHERE "Registration"."Minor_Courses".minor_name = %s and 
+                    "Registration"."Student_Courses_Completed".subject IS NULL and 
+                    "Registration"."Student_Courses_Completed".course_number IS NULL
+                    ORDER BY "Registration"."Minor_Courses".course_number'''
+      
+        cur.execute(script, (minor, ))   
+
+        rv2 = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+        rv = rv1 + rv2
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200
+
+
+
+# The courses_completed endpoint returns the courses a student has completed from the 
 # Student_Courses_Completed table
 @app.route("/api/courses_completed", methods=['GET'])
 @token_required
 def courses_completed(pin):
-    return 
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT *
+                    FROM "Registration"."Student_Courses_Completed" 
+                    WHERE "Registration"."Student_Courses_Completed".student_pin = %s '''
+      
+        cur.execute(script, (pin, ))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200
 
 
 
-# TODO: The major_courses endpoint returns the courses needed to satisfy a major from the 
+# The major_courses endpoint returns the courses needed to satisfy a major from the 
 # Major_Courses table
 @app.route("/api/major_courses", methods=['GET'])
 @token_required
-def major(pin):
-    return 
+def major_courses(pin):
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        # get major of student first
+        script = ''' SELECT major_name
+                    FROM "Registration"."Student_Major" 
+                    WHERE "Registration"."Student_Major".student_pin =  %s '''
+      
+        cur.execute(script, (pin, ))     
+
+        rv = cur.fetchone()
+
+        major = rv[0]
+
+        script = ''' SELECT *
+                    FROM "Registration"."Major_Courses" 
+                    WHERE "Registration"."Major_Courses".major_name = %s '''
+      
+        cur.execute(script, (major, ))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200 
 
 
 
-# TODO: The minor_courses endpoint returns the courses needed to satisfy a minor from the 
+# The minor_courses endpoint returns the courses needed to satisfy a minor from the 
 # Minor_Courses table
 @app.route("/api/minor_courses", methods=['GET'])
 @token_required
 def minor_courses(pin):
-    return 
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        # get minor of student first
+        script = ''' SELECT minor_name
+                    FROM "Registration"."Student_Minor" 
+                    WHERE "Registration"."Student_Minor".student_pin =  %s '''
+      
+        cur.execute(script, (pin, ))     
+
+        rv = cur.fetchone()
+
+        minor = rv[0]
+
+        script = ''' SELECT *
+                    FROM "Registration"."Minor_Courses" 
+                    WHERE "Registration"."Minor_Courses".minor_name = %s '''
+      
+        cur.execute(script, (minor, ))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200 
 
 
 

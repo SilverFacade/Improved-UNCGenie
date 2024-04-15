@@ -3,6 +3,10 @@
 
 @import url('../assets/css/global.scss');
 
+body {
+  background: var(--background);
+}
+
 .nav-bar {
   background: var(--navy);
   width: 100vw; //view width
@@ -54,7 +58,7 @@
 
     a { //Anchor
       font-size: 22px;
-      color: var(--prettypink);
+      color: var(--background);
       display: block;
       line-height: 51px;
       height: 51px;
@@ -96,7 +100,7 @@
         }
       }
     }
-    a.about-link {
+    a.personal-link {
       &:after {
         content: 'ABOUT';
       }

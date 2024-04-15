@@ -21,12 +21,15 @@ where student_pin = '98513241' and schedule_name = 'Rosie Schedule';
  * 2. If true, list them from Course_Requisite table (can tell if co- or pre-requisite)
  * Can check Student_Courses_Completed to check if the student has completed the courses
  */
+<<<<<<< HEAD
 
 /*select requisites
 from "Registration"."Course"
 where subject = 'CSC' and course_number = '112';
 */
 
+=======
+>>>>>>> 4433e40ee3a223c7c8f204f5b40ff3a1af513563
 select req_course_subject, req_course_number
 from "Registration"."Course_Requisite"
 where subject = 'CSC' and course_number = '112';
