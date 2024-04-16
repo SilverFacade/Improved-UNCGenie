@@ -1,6 +1,5 @@
 import "./index.scss"
 import jpg1 from '../imgs/stockPhoto.jpg';
-import Nav from '../Nav';
 
 const Login = () => {
 

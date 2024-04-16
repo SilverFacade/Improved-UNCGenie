@@ -1,11 +1,36 @@
 @import url('../assets/css/global.scss');
 
-.scrollList{
+#selectSubject{
   position:absolute;
-  height: 92vh;
-  max-height: 92vh;
+  height: 5vh;
+  max-height: 5vh;
   width: 15vw;
   margin-top: 8vh;
+  overflow:hidden;
+  background: var(--navy);
+
+  #subjectDropdown{
+
+  }
+
+  select {
+    border: 3px solid var(--navy);
+    font-size: 12px;
+    margin-top: 1.25vh;
+    margin-left: 2.75vw;
+    width: 10vw;    
+    border-radius: 2vh;  
+    background: var(--navyaccent);
+    color: black;
+  }
+}
+
+#scrollList{
+  position:absolute;
+  height: 87vh;
+  max-height: 87vh;
+  width: 15vw;
+  margin-top: 13vh;
   overflow:hidden;
   overflow-y:scroll;
   background: var(--navy);
@@ -58,8 +83,8 @@
   }
 
   #descDiv{
-    background: var(--navyaccent);
-    margin-top: 3vh;
+    background: var(--navy);
+    margin-top: 1vh;
     margin-left: 7.5vw;
     margin-bottom: 1vh;
     border-radius: 2vh;

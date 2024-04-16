@@ -78,18 +78,24 @@ div {
     }
   }
 
-  &.progress {
-    top: 20%;
-    border-radius: 2vh;
-    border: 5px solid var(--navy);
-    padding: 2vh;
-    background: var(--prettypink);
+  #degreeprogressheader{
     position: absolute;
-    top: 80%;
-    left: 10%;
-    display: flex;
-    justify-content: center;
-    height: 5vh;
-    width: 75vw;
+    bottom: 6vh; 
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+    width: 100vw;
+  }
+
+  #degreeprogress{
+    position: absolute;
+    background: var(--navyaccent);
+    height: 4vh;
+    margin: auto;
+    bottom: 1vh;
+    left: 25vw;
+    width: 50vw;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
   }
 }

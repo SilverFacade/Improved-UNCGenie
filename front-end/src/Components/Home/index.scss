@@ -88,6 +88,15 @@
     }
   }
 
+  #degreeprogressheader{
+    position: absolute;
+    bottom: 4vh; 
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+    width: 100vw;
+  }
+
   #degreeprogress{
     position: absolute;
     background: var(--navyaccent);
@@ -98,12 +107,6 @@
     width: 30vw;
     border-radius: 2vh;
     border: 0.2vw solid var(--navy);
-    padding: 1vh; 
-  
-    p {
-      font-size: 10px;
-      margin-top: 0;
-    }
   }
 }
 
