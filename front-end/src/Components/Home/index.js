@@ -1,12 +1,13 @@
 import "./index.scss"
 import {useState, useEffect} from "react";
-import jpg1 from '../imgs/UNCGphoto.jpg';
 import Nav from '../Nav';
 import Login from '../Login';
+import Progress from "../Progress";
 
 const Home = () => {
     const [registered, setRegistered] = useState(null);
     const [student, setStudent] = useState(null);
+    const [progress, setProgress] = useState(null);
 
     async function getRegistered(e){
         if(registered) {
@@ -41,6 +42,19 @@ const Home = () => {
         }).then(data => {
             console.log(data);
             setStudent(data);
+        });
+
+        fetch('/api/graduation_progress', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token')
+            }            
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setProgress(data);
         });
     }, []); 
 
@@ -113,12 +127,8 @@ const Home = () => {
                         </table>
                     </div>
 
-                    <div id={'degreeprogress'} >
-                        <a href={'/progress'}>
-                            <p>degree progress percent</p>
-                        </a>
-                    </div>
-
+                    <h2 id={'degreeprogressheader'}>Degree Progress: {progress && progress.progress*100}%</h2>
+                    <progress id={'degreeprogress'} value={progress && progress.progress*100} max="100"></progress>
                 </div>
             </>
         )

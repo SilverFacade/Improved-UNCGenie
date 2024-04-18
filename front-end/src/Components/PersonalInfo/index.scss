@@ -5,24 +5,31 @@
     margin-left: 12.5vw;
     width: 75vw;
     height: fit-content;
+    background-color: #0f2044;
+    border-radius: 2vh;
+    border: 5px solid #FFB71B;
 
     h1 {
         text-align: center;
+        margin-top: 2vh;
+        color: white;
     }
 
     p {
         margin-left: 5vw;
         font-size: 20px;
+        color: white;
     }
 
     #homeButton {
-        border: 3px solid var(--navy);
+        border: 3px solid #FFB71B;
         margin-top: 2vh;
-        margin-left: 32.75vw;
+        margin-left: 33.75vw;
+        margin-bottom: 2vh;
         font-size: 12px;
         width: 10vw;    
         border-radius: 2vh;  
-        background: var(--navyaccent);
+        background: #a6b0b7;
         color: black;
     }
 }
