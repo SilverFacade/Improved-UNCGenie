@@ -7,21 +7,17 @@
   width: 15vw;
   margin-top: 8vh;
   overflow:hidden;
-  background: var(--navy);
-
-  #subjectDropdown{
-
-  }
+  background: #0f2044; 
 
   select {
-    border: 3px solid var(--navy);
+    border: 3px solid #FFB71B;
     font-size: 12px;
     margin-top: 1.25vh;
     margin-left: 2.75vw;
     width: 10vw;    
     border-radius: 2vh;  
-    background: var(--navyaccent);
-    color: black;
+    background: #2a4275; 
+    color: white;
   }
 }
 
@@ -33,7 +29,7 @@
   margin-top: 13vh;
   overflow:hidden;
   overflow-y:scroll;
-  background: var(--navy);
+  background: #0f2044; 
 
     #classList{
       list-style-type: none;
@@ -42,14 +38,14 @@
       margin-left: 2.5vw;
 
       li { 
-        border: 5px solid var(--navy);
+        border: 3px solid var(--navy);
         margin-top: 3vh;
         font-size: 12px;
         width: 10vw;    
         border-radius: 2vh;  
-        color: black;
-        background: var(--navyaccent);
-        border-color: rgb(85, 9, 85);
+        color: white;
+        background: #2a4275; 
+        border-color: #FFB71B;
       }
     }
 }
@@ -59,7 +55,7 @@
   margin-left: 20vw;
   margin-top: 13vh;
   width: 75vw;
-  background: var(--navy);
+  background: #0f2044; 
   border-radius: 2vh;
 
   #titleDiv{
@@ -69,21 +65,25 @@
 
     h1 {
       text-align: center;
+      margin-right: 2vw;
+      color: #FFB71B;
     }
     
     h2 {
       text-align: center;
+      color: #FFB71B;
     }
 
     p {
       text-align: center;
       font-size: 24px;
       margin-bottom: 5vh;
+      color: white;
     }
   }
 
   #descDiv{
-    background: var(--navy);
+    background: #0f2044; 
     margin-top: 1vh;
     margin-left: 7.5vw;
     margin-bottom: 1vh;
@@ -93,6 +93,7 @@
 
     p {
       text-align: center;
+      color: white;
     }
   }
 }

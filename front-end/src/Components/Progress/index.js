@@ -47,39 +47,6 @@ const Progress = () => {
             setProgress(data);
         });
     }, []); 
-    
-
-
-    /*
-    async function progress(e) {
-        e.preventDefault();
-        const user = document.querySelector('form [name="username"]');
-        const pass = document.querySelector('form [name="password"]');
-        const request = await fetch('/api/progress', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: user.value,
-                password: pass.value
-            }) // curls for defining json objects & params when talking about data types
-        }).then((res) => res.json()); //it needs a json object as second variable
-        if (request.status === 200) {
-            localStorage.setItem('token', request.token); // Holds onto the data locally
-            window.location.href = '/progress';
-        } else alert(request.message); //later replace with modal (mode el)
-    }
-
-    const tasks = [];
-    const [initState, setInit] = useState(tasks);
-    function AddToList(e) {
-        e.preventDefault();
-        let input = document.getElementById('taskinput').value;
-        setInit([...initState, input]);        //const Task =
-        document.getElementById('taskinput').value = '';
-    }
-    */
 
     return (
         <>
@@ -96,7 +63,7 @@ const Progress = () => {
                 <ul id = {'completedList'}>
                 <h1>Completed Classes</h1>
                     {completed && completed.map((course, i) => (
-                        <li key={i}>{course.subject} {course.course_number}</li>
+                        <li key={i}>{course.subject} {course.course_number} Grade: {course.grade}</li>
                     ))}
                 </ul>
             </div>

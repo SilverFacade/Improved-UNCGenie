@@ -458,6 +458,68 @@ def minor_courses(pin):
     return jsonify(rv), 200 
 
 
+# The subjects endpoints selects the subjects in the database
+@app.route("/api/subjects", methods=['GET'])
+@token_required
+def subject(pin):
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT DISTINCT subject
+                    FROM "Registration"."Course"'''
+      
+        cur.execute(script)     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200 
+
+
+# The courseNumbers endpoint selects all the courses of a subject
+@app.route("/api/courseNumbers", methods=['GET'])
+@token_required
+def courseNums(pin):
+    subject = request.headers['subject']
+
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT course_number
+                    FROM "Registration"."Course"
+                    WHERE "Registration"."Course"."subject" = %s '''
+      
+        cur.execute(script, (subject, ))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200 
+
 
 # The graduation_progress endpoint calculates the progress toward graduation and return it.
 @app.route("/api/graduation_progress", methods=['GET'])
@@ -534,7 +596,7 @@ def graduation_progress(pin):
 
         courses_completed = cur.fetchall()
 
-        degree_progress = round((len(courses_completed) / (len(courses_completed) + len(courses_remaining))), 4)
+        degree_progress = round((len(courses_completed) / (len(courses_completed) + len(courses_remaining))), 3)
 
     finally:
         if cur is not None:

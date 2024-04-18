@@ -44,7 +44,6 @@ const ClassInfo = () => {
                     <option value="HIS">HIS</option>
                     <option value="BIO">BIO</option>
                     <option value="PHY">PHY</option>
-                    <option value="FRE">FRE</option>
                 </select>
             </div>
 
