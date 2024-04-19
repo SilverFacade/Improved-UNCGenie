@@ -18,19 +18,21 @@
 
   p {
     text-align: center;
+    color: black;
   }
 
   h1{
     text-align: center;
+    color: black;
   }
 
   button {
-    border: 3px solid var(--navy);
+    border: 2px solid #FFB71B;
     font-size: 12px;
     width: 10vw;    
     border-radius: 2vh;  
-    background: var(--navyaccent);
-    color: black;
+    background-color: #0f2044;
+    color: white;
   }
 
   #redirectButtons{
@@ -50,11 +52,11 @@
   }
 
   #currentSchedule {    
-    background: var(--navyaccent);
+    background-color: #0f2044;
     margin-left: 42vw;
     width: 45vw;
     border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border: 0.2vw solid #a6b0b7;
 
     #checkScheduleButton{
       margin-left: 17.5vw;
@@ -65,8 +67,10 @@
       width: 35vw;
       margin-left: 5vw;
       margin-top: 2vh;
+      margin-bottom: 1vh;
       position: relative;
       border-collapse: separate; 
+      color: white;
 
       #registered-classes-table-row{
         text-align:center;
@@ -76,11 +80,11 @@
   }  
 
   form {
-    background: var(--navyaccent);
+    background-color: #0f2044;
     height: 15vh;
     width: 20vw;
     border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border: 0.2vw solid  #a6b0b7;
     padding: 2vh; 
     float: left;
   
@@ -90,6 +94,7 @@
       height: 20vh;
       display: flex;
       flex-direction: column;
+      color: white;
   
       span {
         height: 95%;
@@ -101,9 +106,18 @@
     }
   }
 
+  #degreeprogressheader{
+    position: absolute;
+    bottom: 4vh; 
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+    width: 100vw;
+  }
+
   #degreeprogress{
     position: absolute;
-    background: var(--navyaccent);
+    background-color: #0f2044;
     height: 2vh;
     margin: auto;
     bottom: 1vh;
@@ -111,12 +125,6 @@
     width: 30vw;
     border-radius: 2vh;
     border: 0.2vw solid var(--navy);
-    padding: 1vh; 
-  
-    p {
-      font-size: 10px;
-      margin-top: 0;
-    }
   }
 }
 

@@ -8,14 +8,16 @@ div {
     text-align: center;
     font-size: 20px;
     margin-top: 0;
+    margin-left: 2vw;
+    color: #FFB71B;
   }
 
   &.remaining {
-    top: 20%;
+    top: 25%;
     border-radius: 2vh;
-    border: 5px solid var(--navy);
+    border: 5px solid #FFB71B;
     padding: 2vh;
-    background: var(--prettypink);
+    background: #0f2044; 
     position: absolute;
     height: 40vh;
     width: 30vw;
@@ -29,27 +31,27 @@ div {
       padding: 0;
   
       li { 
-        border: 5px solid var(--navy);
-        font-size: 20px;
+        border: 5px solid #0f2044;
         margin-top: 1vh;
+        margin-bottom: 1vh;
         margin-left: 1.5vw;
-        width: 20vw;   
-        height: 5vh;  
-        border-radius: 1vh;     
+        font-size: 20px;
         text-align: center;
+        width: 20vw;
+        height: 5vh;    
+        border-radius: 1vh;  
         color: black;
-        background: var(--navyaccent);
-        border-color: rgb(85, 9, 85);
+        background: #a6b0b7;
       }
     }
   }
 
   &.completed {
-    top: 20%;
+    top: 25%;
     border-radius: 2vh;
-    border: 5px solid var(--navy);
+    border: 5px solid #FFB71B;
     padding: 2vh;
-    background: var(--prettypink);
+    background: #0f2044; 
     position: absolute;
     height: 40vh;
     width: 30vw;
@@ -63,8 +65,9 @@ div {
       padding: 0;
   
       li { 
-        border: 5px solid var(--navy);
+        border: 5px solid #0f2044;
         margin-top: 1vh;
+        margin-bottom: 1vh;
         margin-left: 1.5vw;
         font-size: 20px;
         text-align: center;
@@ -72,24 +75,29 @@ div {
         height: 5vh;    
         border-radius: 1vh;  
         color: black;
-        background: var(--navyaccent);
-        border-color: rgb(85, 9, 85);
+        background: #a6b0b7;
       }
     }
   }
 
-  &.progress {
-    top: 20%;
-    border-radius: 2vh;
-    border: 5px solid var(--navy);
-    padding: 2vh;
-    background: var(--prettypink);
+  #degreeprogressheader{
     position: absolute;
-    top: 80%;
-    left: 10%;
-    display: flex;
-    justify-content: center;
-    height: 5vh;
-    width: 75vw;
+    bottom: 6vh; 
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+    width: 100vw;
+  }
+
+  #degreeprogress{
+    position: absolute;
+    background:  #0f2044;
+    height: 4vh;
+    margin: auto;
+    bottom: 1vh;
+    left: 25vw;
+    width: 50vw;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
   }
 }

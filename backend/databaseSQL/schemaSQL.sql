@@ -1,5 +1,5 @@
 /*
-*   About This database:
+*   About this database:
 *
 *   Person Table: 
 *
@@ -88,12 +88,9 @@ CREATE TABLE "Registration"."Minor" (
 CREATE TABLE "Registration"."Course" (
   "subject" char(3),
   "course_number" char(3),
-  "title" varchar(40),
+  "title" varchar(80),
   "credits" int NOT NULL,
   "description" varchar(1000),
-  "si" bool,
-  "wi" bool,
-  "marker" varchar(10),
   PRIMARY KEY ("subject", "course_number")
 );
 
@@ -124,8 +121,6 @@ CREATE TABLE "Registration"."Course_Requisite" (
   "course_number" char(3),
   "req_course_subject" char(3),
   "req_course_number" char(3),
-  "prerequisite" bool,
-  "corequisite" bool,
   PRIMARY KEY ("subject", "course_number", "req_course_subject", "req_course_number")
 );
 

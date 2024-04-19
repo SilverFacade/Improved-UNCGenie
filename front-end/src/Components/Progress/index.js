@@ -5,6 +5,7 @@ import {useState, useEffect} from "react";
 const Progress = () => {
     const [remaining, setRemaining] = useState(null);
     const [completed, setCompleted] = useState(null);
+    const [progress, setProgress] = useState(null);
 
     useEffect(() => {
         fetch('/api/courses_remaining', {
@@ -32,40 +33,20 @@ const Progress = () => {
             console.log(data);
             setCompleted(data);
         });
-    }, []); 
-    
 
-
-    /*
-    async function progress(e) {
-        e.preventDefault();
-        const user = document.querySelector('form [name="username"]');
-        const pass = document.querySelector('form [name="password"]');
-        const request = await fetch('/api/progress', {
-            method: 'POST',
+        fetch('/api/graduation_progress', {
+            method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: user.value,
-                password: pass.value
-            }) // curls for defining json objects & params when talking about data types
-        }).then((res) => res.json()); //it needs a json object as second variable
-        if (request.status === 200) {
-            localStorage.setItem('token', request.token); // Holds onto the data locally
-            window.location.href = '/progress';
-        } else alert(request.message); //later replace with modal (mode el)
-    }
-
-    const tasks = [];
-    const [initState, setInit] = useState(tasks);
-    function AddToList(e) {
-        e.preventDefault();
-        let input = document.getElementById('taskinput').value;
-        setInit([...initState, input]);        //const Task =
-        document.getElementById('taskinput').value = '';
-    }
-    */
+                "token": localStorage.getItem('token')
+            }            
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setProgress(data);
+        });
+    }, []); 
 
     return (
         <>
@@ -82,13 +63,13 @@ const Progress = () => {
                 <ul id = {'completedList'}>
                 <h1>Completed Classes</h1>
                     {completed && completed.map((course, i) => (
-                        <li key={i}>{course.subject} {course.course_number}</li>
+                        <li key={i}>{course.subject} {course.course_number} Grade: {course.grade}</li>
                     ))}
                 </ul>
             </div>
-            <div className={'progress'} id={'progress'}>
-                Progress %
-            </div>
+
+            <h2 id={'degreeprogressheader'}>Degree Progress: {progress && progress.progress*100}%</h2>
+            <progress id={'degreeprogress'} value={progress && progress.progress*100} max="100"></progress>
         </>
     )
 }

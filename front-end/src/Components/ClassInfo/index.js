@@ -5,21 +5,24 @@ import Nav from '../Nav';
 const ClassInfo = () => {
     const [courses, setCourses] = useState(null);
 
-    useEffect(() => {
-        fetch('/api/courses', {
+    async function getClasses(e){
+        let sub = document.querySelector('#subjectDropdown');
+        sub = sub.value;
+
+        fetch('/api/courses', 
+        {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "token": localStorage.getItem('token')
-            }            
+                "token": localStorage.getItem('token'),
+                "subject": sub
+            }
         }).then(res=> {
             return res.json();
         }).then(data => {
-            console.log(data);
             setCourses(data);
         });
-    }, []);
-
+    }
 
     async function renderClassInfo(e, subject, course_number, credits, title, description) {  
         console.log(title);
@@ -32,12 +35,25 @@ const ClassInfo = () => {
         return (
             <>
             <Nav/>
-            <div className = {'scrollList'}>
+            <div id ={'selectSubject'}>
+                <select id= {'subjectDropdown'} onChange={(e) => getClasses(this)}>
+                    <option value="">Select...</option>
+                    <option value="CSC">CSC</option>
+                    <option value="MAT">MAT</option>
+                    <option value="PHI">PHI</option>
+                    <option value="HIS">HIS</option>
+                    <option value="BIO">BIO</option>
+                    <option value="PHY">PHY</option>
+                </select>
+            </div>
+
+
+            <div id = {'scrollList'}>
                 <nav>
                     <ul id = {'classList'}>
                         {courses && courses.map((course, i) => (
                             <li key={i} onClick={(e) => 
-                            renderClassInfo(e, course.subject, course.course_number, course.credits, course.title, course.description)}>
+                                renderClassInfo(e, course.subject, course.course_number, course.credits, course.title, course.description)}>
                                 {course.title}
                             </li>
                         ))}

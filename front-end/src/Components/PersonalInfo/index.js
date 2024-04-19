@@ -24,7 +24,7 @@ const PersonalInfo = () => {
         <>
             <Nav/>
             <div id={'infoDiv'}>
-                {student && <h1>{student[0].first_name} {student[0].last_name}</h1>}
+                {student && <h1>{student[0].first_name} {student[0].last_name} Personal Info</h1>}
                 {student && <p> Major: {student[0].major_name}</p>}
                 {student && <p> Minor: {student[0].minor_name}</p>}   
                 {student && <p> Year: {student[0].year}</p>}   

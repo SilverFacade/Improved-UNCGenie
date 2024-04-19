@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.scss"
 import Nav from '../Nav';
 
@@ -9,7 +9,24 @@ const Register = () => {
     const [sections, setSections] = useState(null);
     const [schedule, setSchedule] = useState(null);
     const [registered, setRegistered] = useState(null);
-    
+    const [subjects, setSubjects] = useState(null);
+    const [courseNumbers, setCourseNumbers] = useState(null);
+
+    // API to get subject and course numbers of those subjects when dropdown clicked
+    useEffect(() => {
+        fetch('/api/subjects', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token')
+            }            
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setSubjects(data);
+        });
+    }, []); 
     
     async function getSections(e){
         let sub = document.querySelector('.subject-dropdown');
@@ -28,6 +45,25 @@ const Register = () => {
         }).then(data => {
             console.log(data);
             setSections(data);
+        });
+    }
+
+
+    async function getCourseNumbers(e){
+        let sub = document.querySelector('.subject-dropdown');
+
+        fetch('/api/courseNumbers', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token'),
+                "subject": sub.value,
+            }            
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setCourseNumbers(data);
         });
     }
 
@@ -287,22 +323,22 @@ const Register = () => {
                     <div id = {'course-search-div'}>
                         <h2 id={'h2-2'}>Look for classes to add:</h2>
                         <div className = {'look-for-class'}>          
-                            <p>Subject: </p>
-                            <select className = {'subject-dropdown'} name="Subject">
-                                <option value="CSC">CSC</option>
-                                <option value="MAT">MAT</option>
-                                <option value="PHI">PHI</option>
-                                <option value="HIS">HIS</option>
-                                <option value="BIO">BIO</option>
-                                <option value="PHY">PHY</option>
-                                <option value="FRE">FRE</option>
+                            <p style={{color: 'white'}}>Subject: </p>
+                            <select className = {'subject-dropdown'} name="Subject" onChange={(e) => getCourseNumbers(e)}>
+                                <option>Select...</option>
+                                {subjects && subjects.map((subject, i) => (
+                                    <option key={i} value ={subject.subject}>
+                                        {subject.subject}
+                                    </option>
+                                ))}
                             </select>
-                            <p>Course Number: </p>               
+                            <p style={{color: 'white'}}>Course Number: </p>               
                             <select className = {'course-number-dropdown'} name="Course Number">
-                                <option value="111">111</option>
-                                <option value="222">222</option>
-                                <option value="333">333</option>
-                                <option value="444">444</option>
+                                {courseNumbers && courseNumbers.map((courseNum, i) => (
+                                    <option key={i} value ={courseNum.course_number}>
+                                        {courseNum.course_number}
+                                    </option>
+                                ))}
                             </select>
                             <input className = {'search-button'} type={'button'} onClick={(e) => getSections(e)} value={'Search For Classes'}/>
                         </div>
