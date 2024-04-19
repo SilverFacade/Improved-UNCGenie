@@ -1,5 +1,6 @@
 import "./index.scss"
 import { useState, useEffect } from "react";
+import jpg1 from '../imgs/uncgEUC.jpg';
 import Nav from '../Nav';
 
 const ClassInfo = () => {
@@ -47,7 +48,6 @@ const ClassInfo = () => {
                 </select>
             </div>
 
-
             <div id = {'scrollList'}>
                 <nav>
                     <ul id = {'classList'}>
@@ -70,6 +70,10 @@ const ClassInfo = () => {
                 <div id ={'descDiv'}>
                     <p id={'desc'}></p>
                 </div>
+            </div>
+
+            <div className={'classinfopics'}>
+                <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
             </div>
             </>
         )

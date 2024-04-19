@@ -1,5 +1,18 @@
 @import url('../assets/css/global.scss');
 
+.classinfopics{
+  margin-top: 40vh;
+  margin-left: 33vw;
+  height: 55vh;
+  width: 50vw;
+
+  #photo1{
+    height: 53vh;
+    width: 50vw;
+    border-radius: 2vh;
+  }
+}
+
 #selectSubject{
   position:absolute;
   height: 5vh;
