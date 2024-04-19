@@ -126,6 +126,24 @@
     border-radius: 2vh;
     border: 0.2vw solid var(--navy);
   }
+
+  #degreeprogress::-webkit-progress-value{  
+    height: 2vh;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
+  }
+
+  #degreeprogress::-webkit-progress-bar{
+    height: 2vh;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
+  }
+
+  #degreeprogress::-moz-progress-bar{ 
+    height: 2vh;
+    border-radius: 2vh;
+    border: 0.2vw solid var(--navy);
+  }
 }
 
 

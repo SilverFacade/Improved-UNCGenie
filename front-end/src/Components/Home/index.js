@@ -1,5 +1,6 @@
 import "./index.scss"
 import {useState, useEffect} from "react";
+import jpg1 from '../imgs/UNCGphoto.jpg';
 import Nav from '../Nav';
 import Login from '../Login';
 import Progress from "../Progress";
@@ -125,6 +126,10 @@ const Home = () => {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+
+                    <div className={'homepictures'}>
+                        <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
                     </div>
 
                     <h2 id={'degreeprogressheader'}>Degree Progress: {progress && progress.progress*100}%</h2>
