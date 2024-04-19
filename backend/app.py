@@ -675,6 +675,9 @@ def register(pin):
     try:
         cur = conn.cursor()
 
+
+
+
         # check if already registered
         script = ''' SELECT COUNT(*)
                     FROM "Registration"."Student_Sections_Registered"
@@ -684,12 +687,13 @@ def register(pin):
 
         rv = cur.fetchone()
         rv = int(rv[0])
-        
-        print(rv)
 
         if rv > 0:
             return jsonify({'status' : '400', 'error' : 'Error: You already registered for this course'}), 400
         
+
+
+
         # check capacity
         script = ''' SELECT active, capacity
                     FROM  "Registration"."Section"
@@ -706,6 +710,9 @@ def register(pin):
         if active >= capacity:
             return jsonify({'status' : '400', 'error' : 'Error: Full Capacity'}), 400
 
+
+
+
         # check if student meets requisites
         script = ''' SELECT req_course_subject, req_course_number
                     FROM  "Registration"."Course_Requisite"
@@ -715,29 +722,32 @@ def register(pin):
 
         rv = cur.fetchall()
 
+        print(rv)
+        
+        requisites = rv
+
         if rv:
-            listLength = length_hint(rv)
+            listLength = length_hint(requisites)
             number = 0
 
             while number < listLength:
+                # if the required course is in the student_courses_completed table that means the student completed it
                 script = ''' select count(*)
-                            from "Registration"."Course_Requisite" inner join "Registration"."Student_Courses_Completed" on
-                            "Registration"."Student_Courses_Completed".subject = "Registration"."Course_Requisite".req_course_subject
-                            and "Registration"."Student_Courses_Completed".course_number = "Registration"."Course_Requisite".req_course_number
-                            where "Registration"."Course_Requisite".req_course_subject = %s 
-                            and "Registration"."Course_Requisite".req_course_number = %s
+                            from "Registration"."Student_Courses_Completed"
+                            where "Registration"."Student_Courses_Completed".subject = %s 
+                            and "Registration"."Student_Courses_Completed".course_number = %s
                             and "Registration"."Student_Courses_Completed".student_pin = %s '''
       
-                cur.execute(script, (rv[number][0], rv[number][1], pin))
+                cur.execute(script, (requisites[number][0], requisites[number][1], pin))
 
-                rv = cur.fetchone()
+                rv = cur.fetchall()
 
-                rv = int(rv[0])
+                print(rv[0][0])
 
                 number += 1
 
-                # if student hasn't met requisites
-                if rv < 1:
+                # if student hasn't completed the requisite course
+                if rv[0][0] == 0:
                     return jsonify({'status' : '400', 'error' : 'Error: Requisites not met'}), 400
 
 
