@@ -74,11 +74,8 @@ const Home = () => {
             <>
             <Nav/>
                 <div id={'mainDiv'}>
-                    {student && <h1 id={'welcome'}>Welcome, {student[0].first_name}</h1>}
-                    
-                    
-                    <p>Plan your schedule, register, Look for information on courses, etc... <br/> ...</p>
-                    
+                    {student && <h1 id={'welcome'}>Welcome, {student[0].first_name}!</h1>}
+
                     <div id={'redirectButtons'}>
                         <a href="/register">
                             <button type = "button" id={'registerButton'}> Register</button>
@@ -89,6 +86,19 @@ const Home = () => {
                         <a href="/progress">
                             <button type = "button" id={'progressButton'}>Degree Progress</button>
                         </a>
+                    </div>
+
+                    <div className={'homepicture'}>
+                        <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
+                    </div>
+
+                    <div className={'homepictureDesc'}>
+                        <h1>Web Registration App</h1>
+                        <p>A new and intuitive app for class observation and registration. To start, check your
+                            Degree Progress to see where you stand and what classes are you should plan to take 
+                            this semester. Once you have an idea of what classes to take, check out information about
+                            them. Finally, register for your classes!
+                        </p>
                     </div>
 
                     <form className={'todo'} onSubmit={(e) => AddToList(e)} id={'todo'}>

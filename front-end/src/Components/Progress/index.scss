@@ -3,6 +3,31 @@
 div {
   overflow:hidden;
 
+  #descrip{
+    border-radius: 2vh;
+    border: 5px solid #FFB71B;
+    background: #0f2044; 
+    margin-top: 14vh;
+    height: 10vh;
+    width: 50vw;
+    margin-left: 25vw;
+
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 0;
+      color: #FFB71B;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 1vh;
+      color: white;
+      margin-left: 1vw;
+      margin-right: 1vw;
+    }
+  }
+
   h1 {
     text-align: center;
     font-size: 20px;
@@ -11,7 +36,7 @@ div {
   }
 
   &.remaining {
-    top: 25%;
+    top: 33%;
     border-radius: 2vh;
     border: 5px solid #FFB71B;
     padding: 2vh;
@@ -44,7 +69,7 @@ div {
   }
 
   &.completed {
-    top: 25%;
+    top: 33%;
     border-radius: 2vh;
     border: 5px solid #FFB71B;
     padding: 2vh;

@@ -3,16 +3,42 @@
 #mainDiv{
   margin-top: 10vh;
 
-  .homepictures{
-    margin-top: 1vh;
-    margin-left: 39vw;
-    height: 55vh;
-    width: 50vw;
+  .homepicture{
+    margin-bottom: 2vh;
+    margin-left: 20vw;
+    height: 35vh;
+    width: 30vw;
+    float: left;
 
     #photo1{
-      height: 53vh;
-      width: 50vw;
+      height: 35vh;
+      width: 30vw;
       border-radius: 2vh;
+    }
+  }
+
+  .homepictureDesc {
+    margin-bottom: 2vh;
+    margin-left: 52vw;
+    margin-top: 5vh;
+    height: 35vh;
+    width: 30vw;
+    border-radius: 2vh;
+    border: 2px solid #a6b0b7;
+    background-color:  #0f2044;
+
+    h1{
+      margin-top: 1vh;
+      color:  #FFB71B;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      color: white;
+      margin-top: 7vh;
+      margin-left: 1vw;
+      margin-right: 1vw;
     }
   }
 

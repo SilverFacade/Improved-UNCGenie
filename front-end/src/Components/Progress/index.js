@@ -51,6 +51,13 @@ const Progress = () => {
     return (
         <>
             <Nav/>
+            
+            <div id={'descrip'}>
+                <h1>Degree Progress</h1>
+                <p>On the left you will see your remaining classes to complete for both your major and minor_name.
+                    On the right is your completed classes.
+                </p>
+            </div>
             <div className={'remaining'} id={'remaining'}>
                 <h1>Remaining Classes</h1>
                 <ul id = {'remainingList'}>
