@@ -3,6 +3,19 @@
 #mainDiv{
   margin-top: 10vh;
 
+  .homepictures{
+    margin-top: 16vh;
+    margin-left: 10vw;
+    height: 55vh;
+    width: 50vw;
+
+    #photo1{
+      height: 53vh;
+      width: 50vw;
+      border-radius: 2vh;
+    }
+  }
+
   p {
     text-align: center;
   }

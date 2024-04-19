@@ -1,5 +1,6 @@
 import "./index.scss"
 import {Link} from "react-router-dom";
+import jpg1 from '../imgs/scenicPhoto.jpg';
 //import LogoS from '../../assets/images/logo-s.png'
 //import LogoSubtitle from '../../assets/images/logo_sub.png'
 
@@ -53,19 +54,10 @@ const Nav = () => {
                 <span className={'span-end'}>
                     { element }
                     <a
-                        href=''
+                        href='https://github.com/SilverFacade/Improved-UNCGenie'
+                        target = '_blank'
                     >
                         <FontAwesomeIcon icon={faGithub} />
-                    </a>
-                    <a
-                        href=''
-                    >
-                        <FontAwesomeIcon icon={faYoutube} />
-                    </a>
-                    <a
-                        href=''
-                    >
-                        <FontAwesomeIcon icon={faSkype} />
                     </a>
                 </span>
             </nav>
