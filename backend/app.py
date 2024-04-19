@@ -258,6 +258,40 @@ def courses(pin):
     return jsonify(rv), 200
 
 
+# The course_reqs endpoint returns the required prereqs for a course
+@app.route("/api/course_reqs", methods=['GET'])
+@token_required
+def course_reqs(pin):
+    subject = request.headers['subject']
+    course_number = request.headers['courseNum']
+
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
+                    
+    try:
+        cur = conn.cursor()
+
+        script = ''' SELECT *
+                    FROM "Registration"."Course_Requisite" 
+                    WHERE "Registration"."Course_Requisite".subject = %s and "Registration"."Course_Requisite".course_number = %s'''
+      
+        cur.execute(script, (subject, course_number))     
+        
+        rv = [dict((cur.description[i][0], value)  \
+            for i, value in enumerate(row)) for row in cur.fetchall()]
+
+    finally:
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+    
+    return jsonify(rv), 200
+
+
 
 # The courses_remaining endpoint returns the courses a student has to complete to get their degree
 @app.route("/api/courses_remaining", methods=['GET'])
@@ -880,30 +914,32 @@ def add_to_Schedule(pin):
 
         rv = cur.fetchall()
 
+        requisites = rv
+
         if rv:
-            listLength = length_hint(rv)
+            listLength = length_hint(requisites)
             number = 0
 
             while number < listLength:
+                # if the required course is in the student_courses_completed table that means the student completed it
                 script = ''' select count(*)
-                            from "Registration"."Course_Requisite" inner join "Registration"."Student_Courses_Completed" on
-                            "Registration"."Student_Courses_Completed".subject = "Registration"."Course_Requisite".req_course_subject
-                            and "Registration"."Student_Courses_Completed".course_number = "Registration"."Course_Requisite".req_course_number
-                            where "Registration"."Course_Requisite".req_course_subject = %s 
-                            and "Registration"."Course_Requisite".req_course_number = %s
+                            from "Registration"."Student_Courses_Completed"
+                            where "Registration"."Student_Courses_Completed".subject = %s 
+                            and "Registration"."Student_Courses_Completed".course_number = %s
                             and "Registration"."Student_Courses_Completed".student_pin = %s '''
       
-                cur.execute(script, (rv[number][0], rv[number][1], pin))
+                cur.execute(script, (requisites[number][0], requisites[number][1], pin))
 
-                rv = cur.fetchone()
+                rv = cur.fetchall()
 
-                rv = int(rv[0])
+                print(rv[0][0])
 
                 number += 1
 
-                # if student hasn't met requisites
-                if rv < 1:
+                # if student hasn't completed the requisite course
+                if rv[0][0] == 0:
                     return jsonify({'status' : '400', 'error' : 'Error: Requisites not met'}), 400
+
 
         script = ''' INSERT INTO "Registration"."Schedule" (student_pin, schedule_name, subject, course_number,
                     section_number)

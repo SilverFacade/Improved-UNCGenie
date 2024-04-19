@@ -123,26 +123,27 @@
     bottom: 1vh;
     left: 35vw;
     width: 30vw;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 
   #degreeprogress::-webkit-progress-value{  
     height: 2vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 
   #degreeprogress::-webkit-progress-bar{
-    height: 2vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    height: 1.5vh;
+    border-radius: 20px;
+    border: solid var(--navy);
+    background-color: #0f2044;
   }
 
   #degreeprogress::-moz-progress-bar{ 
     height: 2vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 }
 

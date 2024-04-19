@@ -78,8 +78,8 @@
 
     h1 {
       text-align: center;
-      margin-right: 2vw;
       color: #FFB71B;
+      font-size: 25px;
     }
     
     h2 {
@@ -97,16 +97,22 @@
 
   #descDiv{
     background: #0f2044; 
-    margin-top: 1vh;
     margin-left: 7.5vw;
     margin-bottom: 1vh;
     border-radius: 2vh;
     width: 60vw;
     padding: 1px;
 
+    h2 {
+      text-align: center;
+      color: #FFB71B;
+      font-size: 23px;
+    }
+
     p {
       text-align: center;
       color: white;
+      margin-bottom: 2vh;
     }
   }
 }

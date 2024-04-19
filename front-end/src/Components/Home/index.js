@@ -128,10 +128,6 @@ const Home = () => {
                         </table>
                     </div>
 
-                    <div className={'homepictures'}>
-                        <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
-                    </div>
-
                     <h2 id={'degreeprogressheader'}>Degree Progress: {progress && progress.progress*100}%</h2>
                     <progress id={'degreeprogress'} value={progress && progress.progress*100} max="100"></progress>
                 </div>

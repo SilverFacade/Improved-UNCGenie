@@ -52,16 +52,16 @@ const Progress = () => {
         <>
             <Nav/>
             <div className={'remaining'} id={'remaining'}>
+                <h1>Remaining Classes</h1>
                 <ul id = {'remainingList'}>
-                    <h1>Remaining Classes</h1>
                     {remaining && remaining.map((course, i) => (
                         <li key={i}>{course.subject} {course.course_number}</li>
                     ))}
                 </ul>
             </div>
             <div className={'completed'} id={'completed'}>
-                <ul id = {'completedList'}>
                 <h1>Completed Classes</h1>
+                <ul id = {'completedList'}>
                     {completed && completed.map((course, i) => (
                         <li key={i}>{course.subject} {course.course_number} Grade: {course.grade}</li>
                     ))}

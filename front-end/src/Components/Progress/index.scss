@@ -7,7 +7,6 @@ div {
     text-align: center;
     font-size: 20px;
     margin-top: 0;
-    margin-left: 2vw;
     color: #FFB71B;
   }
 
@@ -21,21 +20,18 @@ div {
     height: 40vh;
     width: 30vw;
     left: 10%;
-    display: flex;
     justify-content: center;
+    overflow:hidden;
+    overflow-y:scroll;
 
     #remainingList{
       list-style-type: none;
-      justify-content: center;
-      padding: 0;
-      overflow:hidden;
-      overflow-y:scroll;
   
       li { 
         border: 5px solid #0f2044;
         margin-top: 1vh;
         margin-bottom: 1vh;
-        margin-left: 1.5vw;
+        margin-left: 2vw;
         font-size: 20px;
         text-align: center;
         width: 20vw;
@@ -57,21 +53,18 @@ div {
     height: 40vh;
     width: 30vw;
     left: 55%;
-    display: flex;
     justify-content: center;
+    overflow:hidden;
+    overflow-y:scroll;
 
     #completedList{
       list-style-type: none;
-      justify-content: center;
-      padding: 0;
-      overflow:hidden;
-      overflow-y:scroll;
   
       li { 
         border: 5px solid #0f2044;
         margin-top: 1vh;
         margin-bottom: 1vh;
-        margin-left: 1.5vw;
+        margin-left: 2vw;
         font-size: 20px;
         text-align: center;
         width: 20vw;
@@ -100,25 +93,26 @@ div {
     bottom: 1vh;
     left: 25vw;
     width: 50vw;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 
   #degreeprogress::-webkit-progress-value{  
     height: 4vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 
   #degreeprogress::-webkit-progress-bar{
-    height: 4vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    height: 3.5vh;
+    border-radius: 20px;
+    border: solid var(--navy);
+    background-color: #0f2044;
   }
 
   #degreeprogress::-moz-progress-bar{ 
     height: 4vh;
-    border-radius: 2vh;
-    border: 0.2vw solid var(--navy);
+    border-radius: 20px;
+    border: solid var(--navy);
   }
 }
