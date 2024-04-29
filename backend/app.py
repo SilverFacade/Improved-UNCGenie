@@ -110,7 +110,7 @@ def student(pin):
 @app.route("/api/schedule", methods=['GET'])
 @token_required
 def schedule(pin):
-                        dbname = 'webregistrationapp',
+    conn = psycopg2.connect(dbname = 'webregistrationapp',
                         user = 'postgres',
                         password = '1234',
                         port = 5432)
