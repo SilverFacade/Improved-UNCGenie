@@ -134,6 +134,7 @@ const Home = () => {
 
                     <h2 id={'degreeprogressheader'}>Degree Progress: {progress && progress.progress*100}%</h2>
                     <progress id={'degreeprogress'} value={progress && progress.progress*100} max="100"></progress>
+                    
                 </div>
             </>
         )
