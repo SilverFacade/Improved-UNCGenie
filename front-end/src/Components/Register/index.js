@@ -52,7 +52,7 @@ const Register = () => {
     async function getCourseNumbers(e){
         let sub = document.querySelector('.subject-dropdown');
 
-        fetch('/api/courseNumbers', {
+        fetch('/api/course_numbers', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Register = () => {
 
 
     async function getRegistered(e){
-        fetch('/api/sectionsRegistered', 
+        fetch('/api/sections_registered', 
         {
             method: 'GET',
             headers: {
@@ -144,7 +144,7 @@ const Register = () => {
 
 
     async function removeFromSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/removeFromSchedule', 
+        fetch('/api/remove_from_schedule', 
         {
             method: 'POST',
             headers: {
@@ -193,7 +193,7 @@ const Register = () => {
 
     
     async function addToSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/addToSchedule', 
+        fetch('/api/add_to_schedule', 
         {
             method: 'POST',
             headers: {
@@ -219,7 +219,7 @@ const Register = () => {
 
     
     async function dropCourse(e, sub, courseNum, sectionNum){
-        fetch('/api/dropSection', 
+        fetch('/api/drop_section', 
         {
             method: 'POST',
             headers: {
@@ -256,8 +256,8 @@ const Register = () => {
                         <h2 id={'h2-1'}> View Registered Courses or Schedules:</h2>
                         <select className= {'register-or-schedule-dropdown'} onChange={(e) => getCRDropdownValue(e)}>
                             <option >Select...</option>
-                            <option value="registered-classes">Registered Courses</option>
-                            <option value="schedules">Watched Classes</option>
+                            <option value="registered-classes">Registered Sections</option>
+                            <option value="schedules">Watched Sections</option>
                         </select>
                     </div>
 

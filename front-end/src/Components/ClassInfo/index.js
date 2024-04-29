@@ -27,7 +27,6 @@ const ClassInfo = () => {
     }
 
     async function renderClassInfo(e, subject, course_number, credits, title, description) {  
-        // fetch prereqs
         fetch('/api/course_reqs', 
         {
             method: 'GET',
@@ -59,20 +58,6 @@ const ClassInfo = () => {
         document.getElementById('classTitle').innerHTML = subject + " " + course_number + ":\n" + title;
         document.getElementById('desc').innerHTML = description;
         document.getElementById('credits').innerHTML = credits; 
-        
-        /*
-        if (reqs && reqs[2]) {
-            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number
-                + ", " + reqs[1].req_course_subject + " " + reqs[1].req_course_number + ", " + reqs[2].req_course_subject + " " + reqs[2].req_course_number;
-        } else if (reqs && reqs[1]) {
-            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number
-            + ", " + reqs[1].req_course_subject + " " + reqs[1].req_course_number;
-        } else if (reqs && reqs[0]) {
-            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number;
-        } else {
-            document.getElementById('requisites').innerHTML = "None";
-        }
-        */
     }
 
     if(localStorage.getItem('token')) {

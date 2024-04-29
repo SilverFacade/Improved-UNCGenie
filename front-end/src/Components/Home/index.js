@@ -16,7 +16,7 @@ const Home = () => {
             return;
         }
 
-        fetch('/api/sectionsRegistered', 
+        fetch('/api/sections_registered', 
         {
             method: 'GET',
             headers: {
