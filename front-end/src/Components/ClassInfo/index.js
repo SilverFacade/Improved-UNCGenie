@@ -1,10 +1,11 @@
 import "./index.scss"
 import { useState, useEffect } from "react";
-import jpg1 from '../imgs/uncgEUC.jpg';
 import Nav from '../Nav';
 
 const ClassInfo = () => {
     const [courses, setCourses] = useState(null);
+    const [reqs, setReqs] = useState(null);
+
 
     async function getClasses(e){
         let sub = document.querySelector('#subjectDropdown');
@@ -26,10 +27,52 @@ const ClassInfo = () => {
     }
 
     async function renderClassInfo(e, subject, course_number, credits, title, description) {  
-        console.log(title);
+        // fetch prereqs
+        fetch('/api/course_reqs', 
+        {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token'),
+                "subject": subject,
+                "courseNum": course_number
+            }
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setReqs(data);
+
+            if (data[2]) {
+                document.getElementById('requisites').innerHTML = data[0].req_course_subject + " " + data[0].req_course_number
+                    + ", " + data[1].req_course_subject + " " + data[1].req_course_number + ", " + data[2].req_course_subject + " " + data[2].req_course_number;
+            } else if (data[1]) {
+                document.getElementById('requisites').innerHTML = data[0].req_course_subject + " " + data[0].req_course_number
+                + ", " + data[1].req_course_subject + " " + data[1].req_course_number;
+            } else if (data[0]) {
+                document.getElementById('requisites').innerHTML = data[0].req_course_subject + " " + data[0].req_course_number;
+            } else {
+                document.getElementById('requisites').innerHTML = "None";
+            }
+        });
     
-        document.getElementById('classTitle').innerHTML = title;
+        document.getElementById('classTitle').innerHTML = subject + " " + course_number + ":\n" + title;
         document.getElementById('desc').innerHTML = description;
+        document.getElementById('credits').innerHTML = credits; 
+        
+        /*
+        if (reqs && reqs[2]) {
+            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number
+                + ", " + reqs[1].req_course_subject + " " + reqs[1].req_course_number + ", " + reqs[2].req_course_subject + " " + reqs[2].req_course_number;
+        } else if (reqs && reqs[1]) {
+            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number
+            + ", " + reqs[1].req_course_subject + " " + reqs[1].req_course_number;
+        } else if (reqs && reqs[0]) {
+            document.getElementById('requisites').innerHTML = reqs[0].req_course_subject + " " + reqs[0].req_course_number;
+        } else {
+            document.getElementById('requisites').innerHTML = "None";
+        }
+        */
     }
 
     if(localStorage.getItem('token')) {
@@ -65,15 +108,15 @@ const ClassInfo = () => {
                 <div id ={'titleDiv'}>
                     <h1>Course:</h1>
                     <p id={'classTitle'}></p>
-                    <h2>Description:</h2>
                 </div>
                 <div id ={'descDiv'}>
+                    <h2>Description:</h2>
                     <p id={'desc'}></p>
+                    <h2>Credits:</h2>
+                    <p id={'credits'}></p>
+                    <h2>Prerequisites:</h2>
+                    <p id={'requisites'}></p>
                 </div>
-            </div>
-
-            <div className={'classinfopics'}>
-                <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
             </div>
             </>
         )
