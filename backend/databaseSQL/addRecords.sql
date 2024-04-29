@@ -1,13 +1,3 @@
-/*
-*
-*	Space For Comments :
-*
-*   Separate insert statement to insert each subjects courses and sections
-*
-*/
-
-
-
 insert into "Registration"."Person" (pin, first_name, last_name, password, address, email, phone_number)
 values 
 	('98513241', 'Rosie', 'Delacruz', '327914', '1234 Main St', 'RD@email.com', '000-000-0000'),

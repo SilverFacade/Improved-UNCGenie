@@ -1,63 +1,58 @@
 @import url('../assets/css/global.scss');
 
 body {
-  .loginpictures{
-    margin-top: 16vh;
-    margin-left: 10vw;
-    height: 55vh;
-    width: 50vw;
-  
-    #photo1{
-      height: 53vh;
-      width: 50vw;
-      border-radius: 2vh;
-    }
-  }
+  #loginPageDiv{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../imgs/stockPhoto.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
 
-  .loginpicturesDesc{
-    background-color: #0f2044;
-    margin-left: 10vw;
-    width: 49.4vw;
-    border-radius: 2vh;
-    border: 0.3vw solid #FFB71B;
+    form{
+      background-color: #0f2044;
+      height: 300px;
+      width: 20vw;
+      border: 5px solid #FFB71B;
+      padding: 2vh; 
   
-    p{
-      text-align: center;
-      color: white;
-    }
-  }
-
-  form{
-    background-color: #0f2044;
-    height: 15vh;
-    width: 25vh;
-    border-radius: 2vh;
-    border: 5px solid #FFB71B;
-    padding: 2vh; 
+      p {
+        color: white;
+        margin-left: 2.15vw;
+      }
   
-    input { //. references class, not elements //test
-      background: #2a4275; ;
-      border: 1px solid white;
-      margin-bottom: 1vh;
-      border-radius: 1vh;
-      padding: 1vh;
-      color: white;
-    } 
+      #appName{
+        #appNameHeader{
+          text-align: center;
+        }
+      }
   
-    &.login {
-      position: absolute;
-      top: 35%;   
-      left: 72%;
-    }
-  
-  }  
+      .textInput{ // for the text input fields
+        background: #2a4275; ;
+        border: 1px solid white;
+        width: 15vw;
+        margin-left: 2.15vw;
+        border-radius: 1vh;
+        padding: 1vh;
+        color: white;
+      }
+      
+      .buttonInput { // for login button
+        background: #2a4275; ;
+        border: 1px solid white;
+        width: 13vw;
+        margin-left: 3.7vw;
+        margin-top: 30px;
+        border-radius: 1vh;
+        padding: 1vh;
+        color: white;
+      } 
+    
+      &.login {
+        position: absolute;
+        top: 31%;   
+        left: 40%;
+      }
+    }  
+  } 
 }
-
-
-
-
-/*Circle
-  height: 15vh; the same!
-  width: 15vh; the same!
-  border-radius: 50%;
- */

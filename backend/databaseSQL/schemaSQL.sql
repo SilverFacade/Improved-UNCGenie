@@ -1,14 +1,9 @@
 /*
-*   About this database:
+* About this database:
 *
 *   Person Table: 
 *
 *   Student Table:
-*
-*
-*
-*
-*
 *
 *
 */

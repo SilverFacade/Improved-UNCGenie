@@ -9,27 +9,6 @@ const Home = () => {
     const [registered, setRegistered] = useState(null);
     const [student, setStudent] = useState(null);
     const [progress, setProgress] = useState(null);
-
-    async function getRegistered(e){
-        if(registered) {
-            setRegistered(null);
-            return;
-        }
-
-        fetch('/api/sections_registered', 
-        {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                "token": localStorage.getItem('token')
-            }
-        }).then(res=> {
-            return res.json();
-        }).then(data => {
-            console.log(data);
-            setRegistered(data);
-        });
-    }   
     
     useEffect(() => {
         fetch('/api/student', {
@@ -59,6 +38,28 @@ const Home = () => {
         });
     }, []); 
 
+    async function getRegistered(e){
+        if(registered) {
+            setRegistered(null);
+            return;
+        }
+
+        fetch('/api/sections_registered', 
+        {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token')
+            }
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setRegistered(data);
+        });
+    }   
+    
+
     const tasks = [];
     const [initState, setInit] = useState(tasks);
     function AddToList(e) {
@@ -68,7 +69,6 @@ const Home = () => {
         document.getElementById('taskinput').value = '';
     }
 
-    
     if(localStorage.getItem('token')) {
         return ( 
             <>

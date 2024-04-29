@@ -6,6 +6,7 @@ import datetime
 import psycopg2
 import json
 
+# Need CORS on AWS
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
 
@@ -110,7 +111,8 @@ def student(pin):
 @app.route("/api/schedule", methods=['GET'])
 @token_required
 def schedule(pin):
-    conn = psycopg2.connect(dbname = 'webregistrationapp',
+    conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
                         user = 'postgres',
                         password = '1234',
                         port = 5432)

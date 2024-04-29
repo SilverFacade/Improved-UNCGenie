@@ -5,7 +5,22 @@ import Nav from '../Nav';
 const ClassInfo = () => {
     const [courses, setCourses] = useState(null);
     const [reqs, setReqs] = useState(null);
+    const [subjects, setSubjects] = useState(null);
 
+    useEffect(() => {
+        fetch('/api/subjects', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token')
+            }            
+        }).then(res=> {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setSubjects(data);
+        });
+    }, []); 
 
     async function getClasses(e){
         let sub = document.querySelector('#subjectDropdown');
@@ -72,13 +87,12 @@ const ClassInfo = () => {
             <Nav/>
             <div id ={'selectSubject'}>
                 <select id= {'subjectDropdown'} onChange={(e) => getClasses(this)}>
-                    <option value="">Select...</option>
-                    <option value="CSC">CSC</option>
-                    <option value="MAT">MAT</option>
-                    <option value="PHI">PHI</option>
-                    <option value="HIS">HIS</option>
-                    <option value="BIO">BIO</option>
-                    <option value="PHY">PHY</option>
+                    <option>Select...</option>
+                        {subjects && subjects.map((subject, i) => (
+                        <option key={i} value ={subject.subject}>
+                            {subject.subject}
+                        </option>
+                    ))}
                 </select>
             </div>
 
