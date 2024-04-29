@@ -20,7 +20,7 @@ const Login = () => {
         // Api call relies on server to send information
         // So gotta wait on server :( so sad
 
-        const request = await fetch('/api/login', {
+        const request = await fetch('http://54.242.126.185:8080/api/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

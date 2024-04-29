@@ -8,7 +8,7 @@ const ClassInfo = () => {
     const [subjects, setSubjects] = useState(null);
 
     useEffect(() => {
-        fetch('/api/subjects', {
+        fetch('http://54.242.126.185:8080/api/subjects', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const ClassInfo = () => {
         let sub = document.querySelector('#subjectDropdown');
         sub = sub.value;
 
-        fetch('/api/courses', 
+        fetch('http://54.242.126.185:8080/api/courses', 
         {
             method: 'GET',
             headers: {
@@ -42,7 +42,7 @@ const ClassInfo = () => {
     }
 
     async function renderClassInfo(e, subject, course_number, credits, title, description) {  
-        fetch('/api/course_reqs', 
+        fetch('http://54.242.126.185:8080/api/course_reqs', 
         {
             method: 'GET',
             headers: {

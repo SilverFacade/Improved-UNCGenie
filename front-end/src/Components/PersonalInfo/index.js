@@ -6,7 +6,7 @@ const PersonalInfo = () => {
     const [student, setStudent] = useState(null);
 
     useEffect(() => {
-        fetch('/api/student', {
+        fetch('http://54.242.126.185:8080/api/student', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

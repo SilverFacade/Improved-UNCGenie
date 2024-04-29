@@ -14,7 +14,7 @@ const Register = () => {
 
     // useEffect is called on page load
     useEffect(() => {
-        fetch('/api/subjects', {
+        fetch('http://54.242.126.185:8080/api/subjects', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const Register = () => {
         let sub = document.querySelector('.subject-dropdown');
         let courseNum = document.querySelector('.course-number-dropdown');
 
-        fetch('/api/sections', {
+        fetch('http://54.242.126.185:8080/api/sections', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Register = () => {
     async function getCourseNumbers(e){
         let sub = document.querySelector('.subject-dropdown');
 
-        fetch('/api/course_numbers', {
+        fetch('http://54.242.126.185:8080/api/course_numbers', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Register = () => {
 
 
     async function getRegistered(e){
-        fetch('/api/sections_registered', 
+        fetch('http://54.242.126.185:8080/api/sections_registered', 
         {
             method: 'GET',
             headers: {
@@ -101,7 +101,7 @@ const Register = () => {
 
 
     async function getSchedule(e){
-        fetch('/api/schedule', 
+        fetch('http://54.242.126.185:8080/api/schedule', 
         {
             method: 'GET',
             headers: {
@@ -118,7 +118,7 @@ const Register = () => {
 
 
     async function register(e, sub, courseNum, sectionNum){
-        fetch('/api/register', 
+        fetch('http://54.242.126.185:8080/api/register', 
         {
             method: 'POST',
             headers: {
@@ -144,7 +144,7 @@ const Register = () => {
 
 
     async function removeFromSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/remove_from_schedule', 
+        fetch('http://54.242.126.185:8080/api/remove_from_schedule', 
         {
             method: 'POST',
             headers: {
@@ -165,7 +165,7 @@ const Register = () => {
     }
     
     async function addToSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/add_to_schedule', 
+        fetch('http://54.242.126.185:8080/api/add_to_schedule', 
         {
             method: 'POST',
             headers: {
@@ -191,7 +191,7 @@ const Register = () => {
 
     
     async function dropCourse(e, sub, courseNum, sectionNum){
-        fetch('/api/drop_section', 
+        fetch('http://54.242.126.185:8080/api/drop_section', 
         {
             method: 'POST',
             headers: {

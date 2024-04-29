@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from functools import wraps
 from operator import length_hint 
 import jwt
@@ -8,7 +9,9 @@ import json
 
 # Need CORS on AWS
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Wrapped and Wrapper function to handle the token that should be received from the client
 # to validate their identity

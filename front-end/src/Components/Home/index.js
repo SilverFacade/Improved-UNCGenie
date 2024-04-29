@@ -11,7 +11,7 @@ const Home = () => {
     const [progress, setProgress] = useState(null);
     
     useEffect(() => {
-        fetch('/api/student', {
+        fetch('http://54.242.126.185:8080/api/student', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const Home = () => {
             setStudent(data);
         });
 
-        fetch('/api/graduation_progress', {
+        fetch('http://54.242.126.185:8080/api/graduation_progress', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const Home = () => {
             return;
         }
 
-        fetch('/api/sections_registered', 
+        fetch('http://54.242.126.185:8080/api/sections_registered', 
         {
             method: 'GET',
             headers: {
