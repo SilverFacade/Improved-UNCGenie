@@ -1,5 +1,4 @@
 import "./index.scss"
-import jpg1 from '../imgs/stockPhoto.jpg';
 
 const Login = () => {
 
@@ -43,22 +42,19 @@ const Login = () => {
 
     return (
         <>
-            <div className={'loginpictures'}>
-                <img id={'photo1'} src={jpg1} alt="Stock Photo" ></img>
-            </div>
-            <div className={'loginpicturesDesc'}>
-                <p>
-                    Login to The Registration App to plan your schedule and Register for Classes! <br/>
-                    The Registration App will allow you to check your degree progress and easily <br/>
-                    register for your preferred classes.
-                </p>
-            </div>
-
+            <div id={'loginPageDiv'}>
             <form className={'login'} onSubmit={(e) => login(e)} id={'login'}>
-                <input type={'text'} placeholder={'Username'} name={'username'} required/>
-                <input type={'password'} placeholder={'Password'} name={'password'} required/>
-                <input type={'submit'} value={'Login'}/>
+                <div id={'appName'}>
+                    <h1 id={'appNameHeader'}>Registration App</h1>
+                </div>
+
+                <p>PIN:</p>
+                <input className={'textInput'} type={'text'} placeholder={'PIN'} name={'username'} required/>
+                <p>Password:</p>
+                <input className={'textInput'} type={'password'} placeholder={'Password'} name={'password'} required/>
+                <input className={'buttonInput'} type={'submit'} value={'Login'}/>
             </form>
+            </div>
         </>
     )
 }

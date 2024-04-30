@@ -6,6 +6,7 @@ import datetime
 import psycopg2
 import json
 
+# Need CORS on AWS
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'poaynawfcdaferqfdsharh'
 
@@ -31,7 +32,7 @@ def token_required(f):
 
 
 
-# The Login route receives the PIN and password from the client validates them with the database
+# The Login route receives the PIN and password from the user and validates them with the database
 @app.route("/api/login", methods=['POST'])
 def login():
     pin = request.json['username']
@@ -46,8 +47,6 @@ def login():
     try:
         cur = conn.cursor()
 
-        # instructors can't log in for now
-        
         script = ''' SELECT COUNT(*)
 	                FROM "Registration"."Person"
 	                WHERE pin = %s and password = %s '''
@@ -63,19 +62,16 @@ def login():
         if conn is not None:
             conn.close()
 
-    # if the pin and id don't match a record in Person table
     if rv < 1:   
         return jsonify({'message':'Wrong PIN or password', 'status' : '401'}), 401
 
-    # make token 365 days for now
-    token = jwt.encode({'pin' : pin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(days=365)}, app.config['SECRET_KEY'])
+    token = jwt.encode({'pin' : pin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(days=7)}, app.config['SECRET_KEY'])
 
     return jsonify({'token' : token, 'status' : 200}), 200
 
 
 
-# The student endpoint returns information about the student in the person table. (maybe from
-# Student table and Student_Major and Student_Minor too)
+# The student endpoint returns information about the student.
 @app.route("/api/student", methods=['GET'])
 @token_required
 def student(pin):
@@ -111,19 +107,10 @@ def student(pin):
 
 
 
-# The schedule route returns a client's schedule (only 1)
+# The schedule route returns a user's schedule (only 1)
 @app.route("/api/schedule", methods=['GET'])
 @token_required
 def schedule(pin):
-    # Get info from client that will be used to query database, pin is passed to all endpoints 
-    # from the token validation wrapped function.
-    # (commented out the data given from client below since we're only doing 1 schedule, other endpoints
-    # receive data like /api/sections endpoint just below this)
-
-    # schedule = request.json['schedule']   / getting rid of multiple schedule for now
-
-    # connects to the database, all endpoints need it. You will need to have the database set up
-    # on your computer to connect and query to it (README on github to set it up for windows)
     conn = psycopg2.connect(host = 'localhost',
                         dbname = 'webregistrationapp',
                         user = 'postgres',
@@ -131,11 +118,8 @@ def schedule(pin):
                         port = 5432)
                     
     try:
-        # to store database query results
         cur = conn.cursor()
 
-        # The query (check out schemaSQL.sql file in databaseSQL to see database schema)
-        # You should probably test the query in dbeaver first 
         script = ''' SELECT "Registration"."Schedule".subject, "Registration"."Schedule".course_number, 
                     "Registration"."Schedule".section_number, "Registration"."Section".days, 
                     "Registration"."Section".active, "Registration"."Section".capacity,
@@ -154,26 +138,17 @@ def schedule(pin):
                     "Registration"."Section".instructor_pin = "Registration"."Person".pin
                     WHERE student_pin = %s '''
 
-        # execute query, adding pin  where %s is in query to prevent sql injection
-        # need , after pin despite 1 argument
         cur.execute(script, (pin, ))
            
-        # Storing data from query in rv. cur.fetchall fetches all the records returned from query,
-        # this adds the keys to the values so we have key-value pairs when returning the json file
         rv = [dict((cur.description[i][0], value)  \
             for i, value in enumerate(row)) for row in cur.fetchall()]
 
-    # close the cursor and connection when done with them
     finally:
         if cur is not None:
             cur.close()
         if conn is not None:
             conn.close()
 
-    # jsonify to get in json format then return the results of query to client.
-    # To view the json data go to localhost:5000/api/schedule in browser if running flask server on
-    # port 5000, which if using "py app.py" to start it should be (have to remove @token_required
-    # at beginning of this route or you will get an error). (200 is just signifying success of api request)
     return jsonify(rv), 200
 
 
@@ -306,7 +281,6 @@ def courses_remaining(pin):
     try:
         cur = conn.cursor()
 
-        # get major of student first
         script = ''' SELECT major_name
                     FROM "Registration"."Student_Major" 
                     WHERE "Registration"."Student_Major".student_pin =  %s '''
@@ -317,7 +291,6 @@ def courses_remaining(pin):
 
         major = rv[0]
 
-        # get minor of student
         script = ''' SELECT minor_name
                     FROM "Registration"."Student_Minor" 
                     WHERE "Registration"."Student_Minor".student_pin =  %s '''
@@ -419,7 +392,6 @@ def major_courses(pin):
     try:
         cur = conn.cursor()
 
-        # get major of student first
         script = ''' SELECT major_name
                     FROM "Registration"."Student_Major" 
                     WHERE "Registration"."Student_Major".student_pin =  %s '''
@@ -463,7 +435,6 @@ def minor_courses(pin):
     try:
         cur = conn.cursor()
 
-        # get minor of student first
         script = ''' SELECT minor_name
                     FROM "Registration"."Student_Minor" 
                     WHERE "Registration"."Student_Minor".student_pin =  %s '''
@@ -523,7 +494,7 @@ def subject(pin):
 
 
 # The courseNumbers endpoint selects all the courses of a subject
-@app.route("/api/courseNumbers", methods=['GET'])
+@app.route("/api/course_numbers", methods=['GET'])
 @token_required
 def courseNums(pin):
     subject = request.headers['subject']
@@ -568,7 +539,6 @@ def graduation_progress(pin):
     try:
         cur = conn.cursor()
 
-        # get major of student first
         script = ''' SELECT major_name
                     FROM "Registration"."Student_Major" 
                     WHERE "Registration"."Student_Major".student_pin =  %s '''
@@ -579,7 +549,6 @@ def graduation_progress(pin):
 
         major = rv[0]
 
-        # get minor of student
         script = ''' SELECT minor_name
                     FROM "Registration"."Student_Minor" 
                     WHERE "Registration"."Student_Minor".student_pin =  %s '''
@@ -644,7 +613,7 @@ def graduation_progress(pin):
 
 # The sections_registered endpoint returns the sections a student is registered for from
 # the Student_Sections_Registered table 
-@app.route("/api/sectionsRegistered", methods=['GET'])
+@app.route("/api/sections_registered", methods=['GET'])
 @token_required
 def sections_registered(pin):
     conn = psycopg2.connect(host = 'localhost',
@@ -709,10 +678,6 @@ def register(pin):
     try:
         cur = conn.cursor()
 
-
-
-
-        # check if already registered
         script = ''' SELECT COUNT(*)
                     FROM "Registration"."Student_Sections_Registered"
                     WHERE student_pin = %s and subject = %s and course_number = %s '''
@@ -724,11 +689,7 @@ def register(pin):
 
         if rv > 0:
             return jsonify({'status' : '400', 'error' : 'Error: You already registered for this course'}), 400
-        
 
-
-
-        # check capacity
         script = ''' SELECT active, capacity
                     FROM  "Registration"."Section"
                     WHERE subject = %s and course_number = %s and section_number = %s '''
@@ -744,10 +705,6 @@ def register(pin):
         if active >= capacity:
             return jsonify({'status' : '400', 'error' : 'Error: Full Capacity'}), 400
 
-
-
-
-        # check if student meets requisites
         script = ''' SELECT req_course_subject, req_course_number
                     FROM  "Registration"."Course_Requisite"
                     WHERE subject = %s and course_number = %s '''
@@ -765,7 +722,6 @@ def register(pin):
             number = 0
 
             while number < listLength:
-                # if the required course is in the student_courses_completed table that means the student completed it
                 script = ''' select count(*)
                             from "Registration"."Student_Courses_Completed"
                             where "Registration"."Student_Courses_Completed".subject = %s 
@@ -780,15 +736,9 @@ def register(pin):
 
                 number += 1
 
-                # if student hasn't completed the requisite course
                 if rv[0][0] == 0:
                     return jsonify({'status' : '400', 'error' : 'Error: Requisites not met'}), 400
 
-
-
-
-        # check for time overlap/conflicts
-        # only checks for exact start and end time overlaps
         script = ''' SELECT start_time, end_time, days
                     FROM "Registration"."Section"
                     WHERE  subject = %s and course_number = %s and section_number = %s'''
@@ -830,7 +780,6 @@ def register(pin):
 
         conn.commit()
     
-        # increment capacity by 1 for section
         script = ''' UPDATE "Registration"."Section"
                     SET active = active + 1
                     WHERE subject = %s and course_number = %s and section_number = %s  '''
@@ -839,7 +788,6 @@ def register(pin):
 
         conn.commit()
 
-        # same script as sections_registered route
         script = ''' SELECT "Registration"."Student_Sections_Registered".subject, 
                     "Registration"."Student_Sections_Registered".course_number, 
                     "Registration"."Student_Sections_Registered".section_number,
@@ -876,7 +824,7 @@ def register(pin):
 
 
 # The add_to_Schedule endpoint adds a section to a student's schedule (check time conflicts)
-@app.route("/api/addToSchedule", methods=['POST'])
+@app.route("/api/add_to_schedule", methods=['POST'])
 @token_required
 def add_to_Schedule(pin):
     subject = request.json['subject']
@@ -892,7 +840,6 @@ def add_to_Schedule(pin):
     try:
         cur = conn.cursor()
 
-        # check if already in schedule
         script = ''' SELECT COUNT(*)
                     FROM "Registration"."Schedule" 
                     WHERE student_pin = %s and subject = %s and course_number = %s and section_number = %s '''
@@ -904,8 +851,7 @@ def add_to_Schedule(pin):
 
         if rv > 0:
             return jsonify({'status' : '400', 'error' : 'Error: Already in Schedule'}), 400
-            
-        # check for requisites satisfied    
+
         script = ''' SELECT req_course_subject, req_course_number
                     FROM  "Registration"."Course_Requisite"
                     WHERE subject = %s and course_number = %s '''
@@ -921,7 +867,6 @@ def add_to_Schedule(pin):
             number = 0
 
             while number < listLength:
-                # if the required course is in the student_courses_completed table that means the student completed it
                 script = ''' select count(*)
                             from "Registration"."Student_Courses_Completed"
                             where "Registration"."Student_Courses_Completed".subject = %s 
@@ -936,7 +881,6 @@ def add_to_Schedule(pin):
 
                 number += 1
 
-                # if student hasn't completed the requisite course
                 if rv[0][0] == 0:
                     return jsonify({'status' : '400', 'error' : 'Error: Requisites not met'}), 400
 
@@ -983,7 +927,7 @@ def add_to_Schedule(pin):
 
 
 # The drop endpoint drops a section from the registered sections table
-@app.route("/api/dropSection", methods=['POST'])
+@app.route("/api/drop_section", methods=['POST'])
 @token_required
 def drop(pin):
     subject = request.json['subject']
@@ -1051,7 +995,7 @@ def drop(pin):
 
 
 # The remove_from_Schedule endpoint removes a section from a student's schedule
-@app.route("/api/removeFromSchedule", methods=['POST'])
+@app.route("/api/remove_from_schedule", methods=['POST'])
 @token_required
 def remove_from_Schedule(pin):
     subject = request.json['subject']

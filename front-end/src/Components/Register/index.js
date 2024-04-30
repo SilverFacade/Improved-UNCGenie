@@ -12,7 +12,7 @@ const Register = () => {
     const [subjects, setSubjects] = useState(null);
     const [courseNumbers, setCourseNumbers] = useState(null);
 
-    // API to get subject and course numbers of those subjects when dropdown clicked
+    // useEffect is called on page load
     useEffect(() => {
         fetch('/api/subjects', {
             method: 'GET',
@@ -52,7 +52,7 @@ const Register = () => {
     async function getCourseNumbers(e){
         let sub = document.querySelector('.subject-dropdown');
 
-        fetch('/api/courseNumbers', {
+        fetch('/api/course_numbers', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Register = () => {
 
 
     async function getRegistered(e){
-        fetch('/api/sectionsRegistered', 
+        fetch('/api/sections_registered', 
         {
             method: 'GET',
             headers: {
@@ -117,7 +117,7 @@ const Register = () => {
     }
 
 
-    async function registerFromScheduleTable(e, sub, courseNum, sectionNum){
+    async function register(e, sub, courseNum, sectionNum){
         fetch('/api/register', 
         {
             method: 'POST',
@@ -144,7 +144,7 @@ const Register = () => {
 
 
     async function removeFromSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/removeFromSchedule', 
+        fetch('/api/remove_from_schedule', 
         {
             method: 'POST',
             headers: {
@@ -163,37 +163,9 @@ const Register = () => {
             setSchedule(data);
         });
     }
-
-    
-    async function registerFromRegisterTable(e, sub, courseNum, sectionNum){
-        fetch('/api/register', 
-        {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "token": localStorage.getItem('token')
-            }, 
-            body: JSON.stringify({
-                subject: sub,
-                courseNumber: courseNum,
-                sectionNumber: sectionNum
-            })
-        }).then(res=> {
-            return res.json()
-        }).then(data => {
-            // if the server returns an error key with json it means the request failed.
-            if (data.error) {
-                alert(data.error);
-            } else{
-                console.log(data);  
-                setRegistered(data);
-            }
-        });
-    }
-
     
     async function addToSchedule(e, sub, courseNum, sectionNum){
-        fetch('/api/addToSchedule', 
+        fetch('/api/add_to_schedule', 
         {
             method: 'POST',
             headers: {
@@ -219,7 +191,7 @@ const Register = () => {
 
     
     async function dropCourse(e, sub, courseNum, sectionNum){
-        fetch('/api/dropSection', 
+        fetch('/api/drop_section', 
         {
             method: 'POST',
             headers: {
@@ -256,8 +228,8 @@ const Register = () => {
                         <h2 id={'h2-1'}> View Registered Courses or Schedules:</h2>
                         <select className= {'register-or-schedule-dropdown'} onChange={(e) => getCRDropdownValue(e)}>
                             <option >Select...</option>
-                            <option value="registered-classes">Registered Courses</option>
-                            <option value="schedules">Watched Classes</option>
+                            <option value="registered-classes">Registered Sections</option>
+                            <option value="schedules">Watched Sections</option>
                         </select>
                     </div>
 
@@ -310,7 +282,7 @@ const Register = () => {
                                 <td className = {'data-cell'}>{sch.last_name}</td>
                                 <td className = {'buttons-cell'}>
                                         <input className = {'register-button-schedule'} type={'button'}  
-                                        onClick={(e) => registerFromScheduleTable(e, sch.subject, sch.course_number, sch.section_number)} value={'Register'} float = "left"/>
+                                        onClick={(e) => register(e, sch.subject, sch.course_number, sch.section_number)} value={'Register'} float = "left"/>
                                         <input className = {'scheduled-courses-remove-button'} type={'button'}
                                         onClick={(e) => removeFromSchedule(e, sch.subject, sch.course_number, sch.section_number)}  value={'Remove'}/>
                                  
@@ -377,7 +349,7 @@ const Register = () => {
                                 <td className = {'buttons-cell'}>
                                     <span className = {'sections-table-row-buttons'}> 
                                         <input className = {'register-button'} type={'button'} value={'Register'} 
-                                        onClick={(e) => registerFromRegisterTable(e, section.subject, section.course_number, section.section_number)} float = "left"/>
+                                        onClick={(e) => register(e, section.subject, section.course_number, section.section_number)} float = "left"/>
                                         <input className = {'add-to-schedule-button'} type={'button'} value={'Add to Watched'}
                                         onClick={(e) => addToSchedule(e, section.subject, section.course_number, section.section_number)} float = "left"/>
                                     </span>
