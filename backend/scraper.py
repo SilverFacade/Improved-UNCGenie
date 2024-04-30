@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import psycopg2
 
 urls = [
         'https://catalog.uncg.edu/courses/csc/',
@@ -9,6 +10,12 @@ urls = [
         'https://catalog.uncg.edu/courses/bio/',
         'https://catalog.uncg.edu/courses/phy/'
 ]
+
+conn = psycopg2.connect(host = 'localhost',
+                        dbname = 'webregistrationapp',
+                        user = 'postgres',
+                        password = '1234',
+                        port = 5432)
 
 for url in urls:
     # Make HTTP request
@@ -30,6 +37,12 @@ for url in urls:
             else:
                 title = "No title available"
             
+            # Split title into parts
+            title_parts = title.split(' ')
+            course_whole = title_parts[0]
+            course_subject, course_number = title_parts[0].split()
+            course_title = ' '.join(title_parts[2:-1])
+
             # Extract class description
             description_tag = course_block.find('p', class_='courseblockdesc')
             description = description_tag.text.strip() if description_tag else "No description available"
@@ -43,8 +56,19 @@ for url in urls:
             else:
                 prerequisites = "None"
             
+            # Write to the database
+            # try: 
+                # cursor = conn.cursor()
+                # cursor.execute("INSERT INTO classes (course_subject, course_number, course_title, description) VALUES (%s, %s, %s, %s, %s)",
+                               # (course_subject, course_number, course_title, description))
+            # finally:
+                # if cursor is not None:
+                    # cursor.close()
+
             # Print class information
-            print("Title:", title)
+            print("Course:", course_subject)
+            print("Number:", course_number)
+            print("Title:", course_title)
             print("Description:", description)
             print()
     else:
